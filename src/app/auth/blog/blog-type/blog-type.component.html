@@ -1,0 +1,36 @@
+<div class="container-fluid mt-60  bg-grey vh-100">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <p class="mt-40 mb-40 ral-bold-22 text-center">{{data.name}}</p>
+        <div class="col-sm-4 mb-20" *ngFor="let item of data.item">
+          <a *ngIf="!data.loading" class="blog-wrap" [routerLink]="['/blog/inner',url,item.slug]">
+            <div class="blog-item">
+              <img *ngIf="item.banner_image" [src]="item.banner_image" alt="" class="img-responsive">
+              <div class="blog-content">
+                <p class="ral-bold-18">{{item.title}}</p>
+                <p class="robo-reg-14 dark-grey blog-text" [innerHTML]="item.description"></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div *ngIf="data.loading" class="spinner-wrap" [ngStyle]="{'height.px': 200}">
+          <mat-progress-spinner class="spinner" [diameter]="50" strokeWidth="5" color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
+      </div>
+      <div class="row" *ngIf="data.isNext">
+        <div class="col-sm-12 text-center  stuff">
+          <button class="btn-load mt-20" *ngIf="!data.loadMore" (click)="loadMore()" mat-raised-button>Load more</button>
+          <div *ngIf="data.loadMore" class="spinner-wrap" [ngStyle]="{'height.px': 100}">
+            <mat-progress-spinner class="spinner" [diameter]="50" strokeWidth="5" color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="data.empty && !data.loading">
+        <div class="col-xs-12">
+          <p class="text-center ral-bold-18">No posts available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

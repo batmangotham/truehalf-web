@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1  col-sm-12">
+    <p class="ral-bold-22 mb-40 text-center">Select a plan</p>
+    <div *ngIf="data.error">
+      <p class="dark-grey roboto mt-20 mb-20 text-center">{{data.error}}</p>
+    </div>
+    <div *ngIf="data.empty && !data.loading">
+      <p class="text-center ral-bold-18 mt-40">Sorry no plans available!!</p>
+    </div>
+    <app-loading [height]="200" *ngIf="data.loading && !data.plans"></app-loading>
+    <div class="row" *ngIf="data.plans">
+      <div class="col-sm-4 col-xs-12 mb-20" *ngFor="let item of data.plans">
+        <div class="card-wrap">
+          <div class="card-shadow plan-block text-center">
+            <div class="plan-name">
+              <!-- <p class="popular">Most popular plan</p> -->
+              <p class="name">Premium Member</p>
+            </div>
+            <div class="plan-details">
+              <p>
+                <span>discount</span>
+                <span>{{item.discount}}%</span>
+              </p>
+              <p>
+                <span>duration</span>
+                <span>{{item.duration}} months</span>
+              </p>
+            </div>
+            <div class="description">
+              {{item.description}}
+            </div>
+            <div class="price">
+              <p>
+                <span>$</span>
+                <span>{{item.amount}}</span>
+              </p>
+              <button [disabled]="item.loading" class="btn btn-default" (click)="paypal(item)" role="button">
+                <span *ngIf="!item.loading">buy now</span>
+                <span *ngIf="item.loading">wait..</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

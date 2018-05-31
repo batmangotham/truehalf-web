@@ -1,0 +1,35 @@
+.heading {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.red {
+  color: #f44336;
+}
+
+.mail-sent {
+  i {
+    color: #4caf50;
+    font-size: 30px;
+    border: 2px solid;
+    border-radius: 31px;
+    padding: 6px;
+  }
+
+  p {
+    margin-bottom: 0;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+}
+
+.btn-blue {
+  position: relative;
+  .load-btn {
+    span {
+      position: absolute;
+      top: 5px;
+      right: 0;
+    }
+  }
+}

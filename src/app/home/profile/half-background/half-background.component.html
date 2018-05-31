@@ -1,0 +1,117 @@
+<app-loading [height]="200" *ngIf="loading"></app-loading>
+<div *ngIf="!show">
+  <form [formGroup]="form" class="profile-form">
+    <div class="row">
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Language" formControlName="truehalf_language">
+            <mat-option *ngFor="let item of data.all_language" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Education" formControlName="truehalf_education">
+            <mat-option *ngFor="let item of data.all_education" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Religion" formControlName="truehalf_religion">
+            <mat-option *ngFor="let item of data.all_religion" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Location" formControlName="truehalf_location">
+            <mat-option *ngFor="let item of location" [value]="item.id">
+              {{item.location}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 text-right mt-20">
+      <button mat-button (click)="view()">Close</button>
+      <button (click)="onSubmit()" type="submit" mat-raised-button color="primary" class="shadow-none">Update</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="show">
+  <div class="col-md-12 mt-20" *ngIf="!loading">
+    <table class="table user-profile-view">
+      <tr>
+        <td>
+          Language
+        </td>
+        <td>
+          <span *ngFor="let item of bckgd.language;last as isLast">
+            <span *ngIf="bckgd.language">{{item.title}}
+              <span *ngIf="!isLast" class="light-grey">|</span>
+            </span>
+          </span>
+          <span *ngIf="!bckgd.language" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Education
+        </td>
+        <td>
+          <span *ngFor="let item of bckgd.education;last as isLast">
+            <span *ngIf="bckgd.education">{{item.title}}
+              <span *ngIf="!isLast" class="light-grey">|</span>
+            </span>
+          </span>
+          <span *ngIf="!bckgd.education" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Religion
+        </td>
+        <td>
+          <span *ngFor="let item of bckgd.religion;last as isLast">
+            <span *ngIf="bckgd.religion">{{item.title}}
+              <span *ngIf="!isLast" class="light-grey">|</span>
+            </span>
+          </span>
+          <span *ngIf="!bckgd.religion" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Location
+        </td>
+        <td>
+          <span *ngFor="let item of bckgd.location;last as isLast">
+            <span *ngIf="bckgd.location">{{item.location}}
+              <span *ngIf="!isLast" class="light-grey">|</span>
+            </span>
+          </span>
+          <span *ngIf="!bckgd.location" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-20">
+      <button class="btn btn-edit no-padding" (click)="view()">
+        <i class="icon-edit"></i>Edit</button>
+    </div>
+  </div>
+</div>

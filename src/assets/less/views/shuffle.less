@@ -1,0 +1,96 @@
+// main: ../page.less
+
+.age-badge {
+    .robo(16px,300);
+    margin-left: 20px;
+    color: @text-color-3;
+    position: relative;
+
+    &:before {
+        content: "";
+        border-left: 2px solid fade(@text-color-3,50%);
+        height: 2px;
+        top: 9px;
+        left: -9px;
+        position: absolute;
+    }
+}
+
+.likes-wrap {
+    max-height: 90px;
+    overflow: auto;
+.scrollbar;
+
+    .like-badge {
+        color: @blue;
+        display: inline-block;
+        border: 1px solid;
+        padding: 4px 6px;
+        margin: 4px 2px;
+        font-size: 12px;
+        border-radius: 14px;
+    }
+}
+
+.reaction-wrap {
+    margin-bottom: 0;
+    margin-top: 5px;
+
+    li {
+        padding: 0 10px !important;
+
+        &:focus,
+        &:hover {
+            i {
+                color: @blue;
+            }
+        }
+
+        a {
+            text-decoration: none;
+
+            span {
+                i {
+                    color: fade(@text-color-3,80%);
+                    font-size: 28px;
+                    line-height: 0;
+                    display: block;
+                }
+            }
+        }
+
+        &:nth-child(2) {
+            a {
+                span {
+                    i {
+                        position: relative;
+                        top: -1px;
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+
+        &:nth-child(3) {
+            &:focus,
+            &:hover {
+                i {
+                    color: @pink;
+                }
+            }
+        }
+    }
+}
+
+.br-6-new {
+    border-radius: 6px 0 0 6px;
+}
+
+.halves {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    text-align: center;
+    right: 0;
+    margin: 0 auto;
+}

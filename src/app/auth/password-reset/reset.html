@@ -1,0 +1,81 @@
+<div class="container-fluid no-padding">
+  <nav id="home-header" class="navbar header navbar-fixed-top blog-header" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" [routerLink]="['/login']">
+          <img src="../../assets/img/truehalf-logo-white.svg" class="img-responsive">
+        </a>
+        <button type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-right">
+        <ul class=" nav navbar-nav navbar-content">
+          <li>
+            <a [routerLink]="['/login']">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 no-padding bg-grey mh-100-vh">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 mt-120 col-md-4 col-md-offset-4">
+            <div class="card-wrap">
+              <div class="card-shadow">
+                <div class="col-xs-12 reset-heading" *ngIf="!data.success && !data.loading">
+                  <p class="roboto dark-grey">Change password</p>
+                  <p class="roboto light-grey mb-20">Password must be minimum 6 characters</p>
+                  <div class="row">
+                    <form [formGroup]="form" (ngSubmit)="resetPassword()">
+                      <div class="col-xs-12">
+                        <mat-form-field>
+                          <input type="password" formControlName="password" matInput placeholder="New password">
+                          <mat-error *ngIf="form.controls.password.hasError('minlength')">
+                            Must be minimum 6 characters
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xs-12">
+                        <mat-form-field>
+                          <input type="password" formControlName="password_confirmation" matInput placeholder="Confirm password">
+                          <mat-error *ngIf="form.controls.password_confirmation.hasError('minlength')">
+                            Must be minimum 6 characters
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xs-12">
+                        <button class="btn btn-default btn-blue" [disabled]="(form.invalid && form.touched) || form.invalid">
+                          <span>Update</span>
+                        </button>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+                <div *ngIf="data.success && !data.loading" class="mail-sent text-center col-xs-12">
+                  <i class="material-icons">check</i>
+                  <p class="roboto dark-grey">Password changed successfully</p>
+                </div>
+                <div *ngIf="data.loading" class="spinner-wrap" [ngStyle]="{'height.px': 100}">
+                  <mat-progress-spinner class="spinner" [diameter]="50" strokeWidth="5" color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                <div *ngIf="data.error && !data.loading" class="error-wrap col-xs-12">
+                  <p class="roboto">{{data.error}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

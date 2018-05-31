@@ -1,0 +1,56 @@
+<div class="container-fluid no-padding">
+  <nav id="home-header" class="navbar header navbar-fixed-top blog-header" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" [routerLink]="['/login']">
+          <img src="../../assets/img/truehalf-logo-white.svg" class="img-responsive">
+        </a>
+        <button type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-right">
+        <ul class=" nav navbar-nav navbar-content">
+          <li>
+            <a [routerLink]="['/login']">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 no-padding bg-grey mh-100-vh">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 mt-120">
+            <div class="card-wrap">
+              <div class="card-shadow">
+                <div *ngIf="data.verify;else failed" class="mt-20 mb-40 text-center check-wrap">
+                  <p class="mt-20">
+                    <i class="material-icons f-34">check</i>
+                  </p>
+                  <p class="ral-bold-18 dark-grey">Email has been Verified</p>
+                  <p class="robo-reg-14 light-grey ">Click below link to redirect to login.</p>
+                  <button type="button" class="btn btn-default" [routerLink]="['/login']">Login</button>
+                </div>
+                <ng-template #failed>
+                  <p *ngIf="!data.loading" style="height:50px;" class="ral-bold-18 dark-grey mt-40 text-center">Verification failed.Try again!!</p>
+                </ng-template>
+                <div *ngIf="data.loading" class="spinner-wrap" [ngStyle]="{'height.px': 100}">
+                  <mat-progress-spinner class="spinner new" [diameter]="50" strokeWidth="5" color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="msg-right" *ngIf="userService.getCurrentUser().subscription && halfId ;else upgrade">
+  <table class="table chat-name">
+    <tr>
+      <td class="visible-xs">
+        <span>
+          <i class="icon-carousel-left"></i>
+        </span>
+      </td>
+      <td>
+        <span>{{half.name}}</span>
+        <span>
+          <!-- <i class="icon-online green"></i> -->
+        </span>
+      </td>
+      <td>
+        <span>
+          <i (click)="chat.deleteMsg(data.id)" class="icon-delete"></i>
+        </span>
+      </td>
+    </tr>
+  </table>
+  <div class="row m-0">
+    <div class="col-xs-12">
+      <div #scrollMe class="chat-wrap" (scroll)="onScroll($event)">
+        <div *ngIf="data.loading" class="message-loading">
+          <mat-progress-spinner class="spinner" [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="data.empty && !data.loading" class="text-center light-grey message-loading">
+          No messages yet
+        </div>
+        <div *ngIf="!data.loading">
+          <div #messages *ngFor="let msg of data.msg">
+            <p *ngIf="userId == msg.sender;else receiveBlock" class="msg-sent">
+              <span *ngIf="msg.content">{{msg.content}}</span>
+              <span class="time" *ngIf="msg.createdAt">{{msg.createdAt | date:'shortTime'}}</span>
+            </p>
+            <ng-template #receiveBlock>
+              <p class="msg-received">
+                <span *ngIf="msg.content">{{msg.content}}</span>
+                <span class="time" *ngIf="msg.createdAt">{{msg.createdAt | date:'shortTime'}}</span>
+              </p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 no-padding">
+      <table class="table chat-input">
+        <tr>
+          <td>
+            <div class="form-group" (keyup.enter)="keyDownFunction($event)">
+              <input name="message" [(ngModel)]="message" type="text" class="form-control" placeholder="Type your message">
+            </div>
+          </td>
+          <td>
+            <button (click)="sendMessage()" class="btn btn-default">
+              <i class="icon-send"></i>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #upgrade>
+  <div class="msg-right" *ngIf="!truhalf || !userService.getCurrentUser().msg_status">
+    <div class="start-convo">
+      <app-upgrade></app-upgrade>
+    </div>
+  </div>
+</ng-template>
+
+
+<div class="msg-right" *ngIf="truhalf && userService.getCurrentUser().msg_status">
+  <table class="table chat-name">
+    <tr>
+      <td class="visible-xs">
+        <span>
+          <i class="icon-carousel-left"></i>
+        </span>
+      </td>
+      <td>
+        <span class="ral-med-16">Truehalf</span>
+        <span>
+          <!-- <i class="icon-online green"></i> -->
+        </span>
+      </td>
+      <td (click)="deleteChat()">
+        <span>
+          <i class="icon-delete"></i>
+        </span>
+      </td>
+    </tr>
+  </table>
+  <div class="row m-0">
+    <div class="col-xs-12">
+      <div class="chat-wrap" #scrollMe class="chat-wrap" (scroll)="onScroll($event)">
+        <div #messages>
+          <p class="msg-received">
+            <span>Hi,
+              <i>{{userService.getCurrentUser().name}}</i> Welcome to Truehalf</span>
+            <span class="time"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

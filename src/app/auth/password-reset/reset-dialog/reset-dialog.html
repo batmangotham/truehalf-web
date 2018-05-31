@@ -1,0 +1,22 @@
+<div *ngIf="!view.sent">
+  <p class="roboto heading dark-grey">Reset password</p>
+  <p class="roboto light-grey">Password reset link will be sent to your email address.</p>
+  <form [formGroup]="form" (ngSubmit)="resetEmail()">
+    <mat-form-field>
+      <input formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+    <button class="btn btn-default btn-blue" [disabled]="(form.invalid && form.touched) || view.loading">
+      <span *ngIf="!view.loading">Submit</span>
+      <span class="load-btn" *ngIf="view.loading">
+        Submiting..
+      </span>
+    </button>
+    <p class="m-0">
+      <small *ngIf="view.error" class="red">{{view.error}}</small>
+    </p>
+  </form>
+</div>
+<div *ngIf="view.sent" class="mail-sent text-center">
+  <i class="material-icons">check</i>
+  <p class="roboto dark-grey">Mail has been sent to your email address</p>
+</div>

@@ -1,0 +1,184 @@
+// main: ../page.less
+.pre-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 900000;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: @white;
+}
+
+#home-header {
+  -webkit-box-shadow: 0px 0px 15px 5px fade(#000, 10%);
+  -moz-box-shadow: 0px 0px 15px 5px fade(#000, 10%);
+  box-shadow: 0px 0px 15px 5px fade(#000, 10%);
+  min-height: 75px;
+  background-color: @white;
+  #nav-menu {
+    > li {
+      a {
+        .raleway;
+        @media (min-width: 768px) and (max-width: 991px) {
+          padding: 16px 10px;
+        }
+      }
+      &:nth-child(1) {
+        a {
+          font-size: 16px;
+          font-weight: 500;
+          color: @text-color-2;
+          margin-top: 10px;
+          i {
+            margin-right: 10px;
+            font-size: 26px;
+            position: relative;
+            transform: translateY(-4px);
+            float: left;
+            margin-right: 10px;
+            line-height: 30px;
+            width: 30px;
+            text-align: center;
+          }
+        }
+      }
+      &:nth-child(2) {
+        a {
+        }
+      }
+      &:nth-child(3) {
+        a {
+          .robo(14px, 400);
+          color: @text-color-3;
+          span {
+            img {
+              width: 35px;
+              border-radius: 100%;
+            }
+            display: inline-block;
+            vertical-align: middle;
+            padding-right: 10px;
+            i {
+              position: relative;
+              top: 3px;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+      a {
+        &:hover,
+        &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  li.profile-drop {
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      ul {
+        opacity: 1;
+        visibility: visible;
+        top: 60px;
+      }
+    }
+    ul {
+      visibility: hidden;
+      opacity: 0;
+      .trans(all 0.3s ease);
+      .box-shadow;
+      .br-6;
+      .roboto;
+      background-color: @white;
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 70px;
+      width: 100px;
+      margin: 0 auto;
+      li {
+        &:hover {
+          a {
+            color: @text-color-2 !important;
+          }
+        }
+        a {
+          color: @text-color-3;
+          text-decoration: none;
+          padding: 5px 10px;
+          display: block;
+        }
+        &:first-of-type {
+          &::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 8px solid @white;
+            top: -7px;
+            position: absolute;
+            right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar-toggle.navbar-mobile {
+  margin-top: 18px;
+  .icon-bar {
+    .trans(all 0.3s ease);
+    background-color: @text-color-3;
+  }
+}
+
+// @media(max-width:767px){
+//   #home-header{
+//     min-height: 50px;
+//   }
+// }
+
+.name-wrap {
+  padding: 0;
+  height: 20px;
+  width: 76px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
+}
+
+.blog-header#home-header {
+  background-color: @blue;
+  min-height: 60px;
+  .navbar-content {
+    margin-top: 5px;
+    li {
+      a {
+        color: @white;
+        margin: 0 5px;
+        padding: 15px 10px;
+        .ral-med-14;
+        &:hover,
+        &:focus {
+          background-color: fade(@white, 10%);
+        }
+      }
+    }
+  }
+  .navbar-brand {
+    padding: 10px 15px;
+    max-width: 200px;
+  }
+}
+
+.login-brand {
+  @media (max-width: 768px) {
+    width: 250px;
+  }
+}

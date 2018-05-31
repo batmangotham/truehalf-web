@@ -1,0 +1,23 @@
+<div class="col-md-7">
+  <p class="ral-med-18 mb-20">Online</p>
+  <div class="row">
+    <app-loading [height]="200" *ngIf="loading"></app-loading>
+    <app-user-card [users]="data.item" *ngIf="!loading"></app-user-card>
+  </div>
+  <div class="row" *ngIf="data.isNext">
+    <div class="col-sm-12 text-center  stuff">
+      <button class="btn-load mt-20" *ngIf="!data.loadMore" (click)="loadMore()" mat-raised-button>Load more</button>
+      <app-loading [height]="100" *ngIf="data.loadMore"></app-loading>
+    </div>
+  </div>
+  <div class="row" *ngIf="data.empty">
+    <div class="col-xs-12">
+      <p class="text-center ral-bold-18">No users online</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="data.upgrade">
+    <div class="col-xs-12">
+      <app-upgrade [data]="data.upgrade"></app-upgrade>
+    </div>
+  </div>
+</div>

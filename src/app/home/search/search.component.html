@@ -1,0 +1,209 @@
+<div class="col-md-7">
+  <p class="ral-med-18 mb-20">Search</p>
+  <div class="row mob-margin">
+    <div class="card-wrap mb-20">
+      <div style="overflow:visible" class="card-shadow main-search">
+        <table class="table search-bar">
+          <tr>
+            <td>Your search</td>
+            <td>
+              <span>
+                <i class="icon-online green"></i>
+                Online</span>
+              <span>
+                <mat-checkbox (change)="isChecked()" class="online-check" [checked]="search.online">
+                </mat-checkbox>
+              </span>
+
+            </td>
+            <td class="search-location">
+              <span>
+                <i class="icon-location"></i>
+              </span>
+              <p class="dis">Distance</p>
+              <div class="search-drop">
+                <p class="text-left">Distance :
+                  <span *ngIf="search.distance">{{search.distance}}&nbsp;miles</span>
+
+                </p>
+                <mat-slider (input)="sliderValue($event)" [step]="5" [value]="search.distance" [min]="0" [max]="500"></mat-slider>
+              </div>
+            </td>
+            <td class="search-location">
+              <span>
+                <i class="icon-age"></i>
+              </span>
+              <p>Age</p>
+              <div class="search-drop pad-lr-20">
+                <form [formGroup]="form" (change)="ageSubmit(form.valid)">
+                  <div class="form-group m-0">
+                    <table class="table m-0">
+                      <tr>
+                        <td>
+                          <mat-form-field>
+                            <input (change)="ageSubmit($event)" type="number" formControlName="min" matInput placeholder="Min age">
+                            <span matSuffix>yrs</span>
+                          </mat-form-field>
+                        </td>
+                        <td>to</td>
+                        <td>
+                          <mat-form-field>
+                            <input (change)="ageSubmit($event)" type="number" formControlName="max" matInput placeholder="Max age">
+                            <span matSuffix>yrs</span>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </form>
+              </div>
+            </td>
+            <td (click)="expand()">
+              <span>Advanced search</span>
+              <i class="material-icons drop-icon">
+                <span *ngIf="!search.isExpand">expand_more</span>
+                <span *ngIf="search.isExpand">expand_less</span>
+              </i>
+            </td>
+          </tr>
+        </table>
+        <div class="adv-search col-xs-12" [ngClass]="{expand: search.isExpand}">
+          <div class="text-center search-upgrade" *ngIf="!_user.getCurrentUser().subscription; else advanced">
+            <p class="ral-bold-18 dark-grey">You are not a premium user</p>
+            <p class="light-grey robo">This feature is only available for premium
+              <br> users</p>
+            <a class="btn btn-default mt-10 ral-med-14" type="button" [routerLink]="['/upgrade']">Upgrade</a>
+          </div>
+          <ng-template #advanced>
+            <form [formGroup]="moreForm">
+              <div class="row">
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="religionSubmit($event)" placeholder="Religion" multiple="true" formControlName="religion">
+                      <mat-option *ngFor="let item of data.religion" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="educationSubmit($event)" placeholder="Education" multiple="true" formControlName="education">
+                      <mat-option *ngFor="let item of data.education" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="occupationSubmit($event)" placeholder="Occupation" multiple="true" formControlName="occupation">
+                      <mat-option *ngFor="let item of data.occupation" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="smokeSubmit($event)" placeholder="Smoking" multiple="true" formControlName="smoke">
+                      <mat-option *ngFor="let item of data.smoke" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="drinkSubmit($event)" placeholder="Drinking" multiple="true" formControlName="drink">
+                      <mat-option *ngFor="let item of data.drink" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select (change)="skinSubmit($event)" placeholder="Skin color" multiple="true" formControlName="skin_color">
+                      <mat-option *ngFor="let item of data.skin_color" [value]="item">
+                        {{ item.title}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-20">
+      <mat-chip-list>
+        <mat-chip color="primary" selected="true" *ngIf="search.online">Online
+          <mat-icon matChipRemove (click)="isChecked()">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="form.value.min && form.value.min">{{form.value.min}} years old to {{form.value.max}} years old
+          <mat-icon matChipRemove (click)="ageReset()">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.religion.length > 0">Religion&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.religion;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.religion)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.education.length > 0">Education&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.education;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.education)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.occupation.length > 0">Occupation&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.occupation;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.occupation)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.smoke.length > 0">Smoking&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.smoke;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.smoke)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.drink.length > 0">Drinking&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.drink;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.drink)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="moreForm.value.skin_color.length > 0">Skin&nbsp;:&nbsp;
+          <span *ngFor="let item of moreForm.value.skin_color;last as isLast">{{item.title}}
+            <span *ngIf="!isLast">,</span>
+          </span>
+          <mat-icon matChipRemove (click)="moreFormReset(moreForm.controls.skin_color)">cancel</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected="true" *ngIf="search.distance">within&nbsp;{{search.distance}}&nbsp;miles
+
+          <mat-icon matChipRemove (click)="distanceReset()">cancel</mat-icon>
+        </mat-chip>
+
+      </mat-chip-list>
+    </div>
+  </div>
+  <div class="row">
+    <app-loading [height]="200" *ngIf="loading"></app-loading>
+    <app-user-card [users]="data.item" *ngIf="!loading"></app-user-card>
+  </div>
+  <div class="row" *ngIf="data.isNext">
+    <div class="col-sm-12 text-center  stuff">
+      <button class="btn-load mt-20" *ngIf="!data.loadMore" (click)="loadMore()" mat-raised-button>Load more</button>
+      <app-loading [height]="100" *ngIf="data.loadMore"></app-loading>
+    </div>
+  </div>
+  <div class="row" *ngIf="data.empty && !loading">
+    <div class="col-xs-12">
+      <p class="text-center ral-bold-18">Sorry no search results</p>
+    </div>
+  </div>
+</div>

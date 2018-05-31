@@ -1,0 +1,161 @@
+// main: ../page.less
+
+.table.user-profile-view {
+  .roboto;
+  margin-bottom: 0;
+
+  td {
+    border: none;
+    padding: 4px 8px 4px 0;
+
+    &:first-child {
+      color: @text-color-3;
+    }
+
+    &:last-child {
+      color: @heading-color;
+    }
+  }
+}
+
+.table.profile-img {
+  margin-bottom: 0;
+
+  td {
+    border: none;
+
+    img {
+      .br-6;
+      height: 50px;
+    }
+
+    &:last-child {
+      position: relative;
+
+      .more-images {
+        position: relative;
+        .br-6;
+
+        .blue-overlay {
+          .br-6;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          background-color: @blue;
+
+          span {
+            .roboto;
+            position: absolute;
+            margin: 0 auto;
+            display: block;
+            width: 100%;
+            top: 29%;
+            text-align: center;
+            color: @white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.add-photo {
+  min-height: 200px;
+  &.bg {
+    background-color: fade(@blue, 20%);
+  }
+  cursor: pointer;
+  &:hover {
+    span {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  span {
+    .trans(all 0.1s ease-in);
+    transform: translateY(10px);
+    opacity: 0;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 120px;
+    background-color: @blue;
+    padding: 8px;
+    border-radius: 33px;
+    color: @white;
+
+    i {
+      position: relative;
+      top: 2px;
+      right: -4px;
+    }
+  }
+}
+
+.table.more-pic {
+  margin-bottom: 0;
+  tr {
+    td {
+      border: none;
+      width: 60px;
+      img {
+        width: 60px;
+      }
+      div {
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        background-color: fade(@black, 50%);
+        border-radius: 6px;
+        width: 60px;
+        height: 60px;
+        span {
+          position: absolute;
+          left: 0;
+          right: 0;
+          text-align: center;
+          vertical-align: middle;
+          line-height: 60px;
+          font-size: 18px;
+          .white;
+          i {
+            position: relative;
+            top: -1px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+ul.profile-wink {
+  border-top: 1px solid #eeeeee;
+  margin-top: 20px;
+  margin-left: 0;
+  width: 80%;
+  margin-bottom: 0;
+  li {
+    cursor: pointer;
+    padding: 10px 5px;
+    padding-bottom: 0;
+    mat-icon {
+      font-size: 26px;
+      color: @text-color-3;
+    }
+    &:first-of-type {
+      padding-left: 0;
+      mat-icon {
+        font-size: 28px;
+      }
+    }
+    &:last-of-type {
+      float: right;
+    }
+  }
+}

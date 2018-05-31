@@ -1,0 +1,212 @@
+<div class="col-md-7">
+  <p class="ral-med-18 mb-20">Profile</p>
+  <div class="row">
+    <div class="card-wrap">
+      <div class="card-shadow" [class.blocking]="user.blocking">
+        <div class="col-sm-5 no-padding">
+          <div class="profile-summary">
+            <div class="profile-inner-wrap">
+              <div class="p-rel add-photo" [class.bg]="user.loading">
+                <img *ngIf="user.profile_pic" [src]="user.profile_pic" alt="" class="img-responsive br-3 w-100">
+                <!-- <a href="">
+                  <span>Add photo
+                    <i class="icon-pluse"></i>
+                  </span>
+                </a> -->
+              </div>
+              <div class="row">
+                <div style="min-height:100px" *ngIf="user.length >= 2" class="col-xs-12">
+                  <p class="roboto dark-grey mt-20">Profile photos</p>
+                  <table class="table more-pic">
+                    <tr>
+                      <td>
+                        <div (click)="openModal()">
+                          <span>
+                            <i class="icon-pluse"></i>{{user.length-1}}</span>
+                        </div>
+                        <img *ngIf="user.image" [src]="user.image" alt="" class="img-responsive br-6">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7 no-padding text-center">
+          <div class="white-panel profile-summary-details br-6">
+            <p *ngIf="user.name" class="robo-reg-22 black">{{user.name}}</p>
+            <p class="robo-reg-22 black" *ngIf="user.error">{{user.error}}</p>
+            <table class="table user-profile-view">
+              <tr *ngIf="user.dob">
+                <td>Date of birth</td>
+                <td>{{user.dob_new}}</td>
+              </tr>
+              <tr *ngIf="user.location">
+                <td>Location</td>
+                <td>
+                  {{user.location}}
+                </td>
+              </tr>
+              <tr *ngIf="user.age">
+                <td>Age</td>
+                <td>{{user.age}}</td>
+              </tr>
+              <tr *ngIf="user.gender">
+                <td>Gender</td>
+                <td>{{user.gender}}</td>
+              </tr>
+              <tr *ngIf="user.distance">
+                <td>Distance</td>
+                <td>{{user.distance | number:'1.0-0'}} miles away</td>
+              </tr>
+              <!-- <tr>
+                <td>Nationality</td>
+                <td>india</td>
+              </tr> -->
+            </table>
+            <ul class="list-inline profile-wink" *ngIf="user.gender">
+              <li [routerLink]="['/message/th-key',id]">
+                <button mat-icon-button>
+                  <mat-icon class="icon-message"></mat-icon>
+                </button>
+              </li>
+              <li (click)="addWink()">
+                <button mat-icon-button>
+                  <mat-icon [class.blue]="user.winks" class="icon-winks"></mat-icon>
+                </button>
+                <!-- <i [class.blue]="user.winks" class="icon-winks"></i> -->
+              </li>
+              <li (click)="addFav()">
+                <button mat-icon-button>
+                  <mat-icon [class.pink]="user.favorite">
+                    <span *ngIf="user.favorite; else notFav">favorite</span>
+                    <ng-template #notFav>
+                      <span>favorite_border</span>
+                    </ng-template>
+                  </mat-icon>
+                </button>
+              </li>
+              <li>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>
+                    more_vert
+                  </mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="blockUser()">Block</button>
+                  <!-- <button mat-menu-item>Report user</button> -->
+                </mat-menu>
+              </li>
+            </ul>
+            <!-- <p class="robo-med-14 blue mt-20">TITLE</p>
+            <p class="dark-grey roboto pr-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, sint!</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="robo-reg-18 mb-20 mt-20">About me</p>
+
+  <div class="row">
+    <div class="card-wrap">
+      <div class="card-shadow">
+        <div class="col-sm-12 no-padding">
+          <div class="profile-summary">
+            <div class="profile-inner-wrap">
+              <mat-tab-group dynamicHeight="true">
+                <mat-tab label="Appearance">
+                  <div class="row">
+                    <div class="col-md-6 mt-20">
+                      <table class="table user-profile-view">
+                        <tr>
+                          <td>Height</td>
+                          <td *ngIf="user.height">{{user.height}}&nbsp;ft</td>
+                          <td class="not-available" *ngIf="!user.height">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Body type</td>
+                          <td *ngIf="user.body_type">{{user.body_type}}</td>
+                          <td class="not-available" *ngIf="!user.body_type">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Eye color</td>
+                          <td *ngIf="user.eye_color">{{user.eye_color}}</td>
+                          <td class="not-available" *ngIf="!user.eye_color">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Hair color</td>
+                          <td *ngIf="user.hair_color">{{user.hair_color}}</td>
+                          <td class="not-available" *ngIf="!user.hair_color">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Skin color</td>
+                          <td *ngIf="user.skin_color">{{user.skin_color}}</td>
+                          <td class="not-available" *ngIf="!user.skin_color">Not available</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Background">
+                  <div class="row">
+                    <div class="col-md-6 mt-20">
+                      <table class="table user-profile-view">
+                        <tr>
+                          <td>Language</td>
+                          <td *ngIf="user.language">{{user.language}}</td>
+                          <td class="not-available" *ngIf="!user.language">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Education</td>
+                          <td *ngIf="user.education">
+                            {{user.education}}
+                          </td>
+                          <td class="not-available" *ngIf="!user.education">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Religion</td>
+                          <td *ngIf="user.religion">
+                            {{user.religion}}
+                          </td>
+                          <td class="not-available" *ngIf="!user.religion">Not available</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Lifestyle">
+                  <div class="row">
+                    <div class="col-md-6 mt-20">
+                      <table class="table user-profile-view">
+                        <tr>
+                          <td>Smoking</td>
+                          <td *ngIf="user.smoke">{{user.smoke}}</td>
+                          <td class="not-available" *ngIf="!user.smoke">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Drinking</td>
+                          <td *ngIf="user.drink">
+                            {{user.drink}}
+                          </td>
+                          <td class="not-available" *ngIf="!user.drink">Not available</td>
+                        </tr>
+                        <tr>
+                          <td>Occupation</td>
+                          <td *ngIf="user.occupation">
+                            {{user.occupation}}
+                          </td>
+                          <td class="not-available" *ngIf="!user.occupation">Not available</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

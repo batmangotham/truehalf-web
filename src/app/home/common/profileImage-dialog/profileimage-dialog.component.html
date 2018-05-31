@@ -1,0 +1,93 @@
+<div *ngIf="!data.half_image">
+  <!-- <div *ngIf="data.type" style="height:300px"> -->
+  <!-- <div class="cropper-wrap" *ngIf="imgData.image"> -->
+  <img-cropper *ngIf="data.type && imgData.image" class="img-cropper" #cropper [image]="imgData" [settings]="cropSettings"
+    (onCrop)="getImage($event)"></img-cropper>
+  <!-- <img [src]="data.image" [width]="cropSettings.croppedWidth" [height]="cropSettings.croppedHeight"> -->
+  <div *ngIf="data.type && imgData.image" class="col-xs-12 text-right cropper-button mb-10">
+    <button [disabled]="nav.upload" mat-raised-button color="primary" class="new-blue" (click)="upload()">
+      <span *ngIf="!nav.upload">upload</span>
+      <span class="upload-text" *ngIf="nav.upload">uploading</span>
+      <span class="upload-progress" *ngIf="nav.upload">
+        <mat-progress-spinner class="spinner" [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+      </span>
+    </button>
+    <button mat-raised-button color="primary" class="new-blue new-grey" (click)="dialogRef.close()">Cancel</button>
+  </div>
+  <!-- </div> -->
+  <div class="col-xs-12" *ngIf="data.type && !imgData.image">
+    <div class="crop-upload">
+      <div class="choose-img">
+        <div class="up-block">
+          <i class="material-icons">file_upload</i>
+          <p class="grey">Click here to upload a profile picture from your computer</p>
+        </div>
+      </div>
+      <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+    </div>
+  </div>
+  <!-- </div> -->
+  <div class="profile-dialog">
+    <div *ngIf="!data.type" class="profile-carousel">
+      <img *ngIf="getImageIndex()" [src]="getImageIndex()" alt="" class="img-responsive">
+      <i (click)="carouselNav('l')" class="icon-carousel-left prof-control"></i>
+      <i (click)="carouselNav()" class="icon-carousel-right prof-control"></i>
+      <div class="pic-approval" *ngIf="!user.images[this.index].status">
+        <p>Image is sent for approval</p>
+      </div>
+      <div class="set-wrap" *ngIf="user.images[this.index].status">
+        <button (click)="setProfilePic()" mat-raised-button color="primary" class="new-blue">Set as profile picture</button>
+      </div>
+      <i *ngIf="user.images[this.index].status" class="material-icons delete pointer" (click)="deleteImage()">delete</i>
+    </div>
+    <div class="col-sm-12 main-nav" *ngIf="user.images.length > 0">
+      <div class="carousel-nav">
+        <div class="carousel-wrap" [ngStyle]="{'left.px': nav.position}">
+          <ul class="list-inline image-list">
+            <li (click)="data.type=true" *ngIf="(user.images.length <4 && !userService.getCurrentUser().subscription) || (user.images.length <11 && userService.getCurrentUser().subscription)">
+              <i class="icon-pluse"></i>
+            </li>
+            <li [class.active]="i===index" class="pointer" *ngFor="let item of user.images;last as isLast;index as i;" (click)="clickNav(i)">
+              <img [src]="item.images" alt="" class="img-responsive" *ngIf="loading; else imageGrey">
+              <ng-template #imageGrey>
+                <div class="image-grey"></div>
+              </ng-template>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <i *ngIf="nav.width > 245" (click)="navigate('l')" class="icon-carousel-left nav-control"></i>
+      <i *ngIf="isNext()" (click)="navigate('r')" class="icon-carousel-right nav-control"></i>
+      <div class="text-center">
+        <small class="light-grey">
+          <span *ngIf="!userService.getCurrentUser().subscription && user.images.length <=4">Maximum 4 photos</span>
+          <span *ngIf="userService.getCurrentUser().subscription && user.images.length <=11">Maximum 11 photos</span>
+        </small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="profile-dialog" *ngIf="data.half_image">
+  <div id="half-carousel" class="carousel slide" data-ride="carousel" wrap="false" interval="false">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div [ngClass]="{active: isLast}" class="item" *ngFor="let item of data.half_image;last as isLast;index as i">
+        <img [src]="item.image_path" class="img-responsive">
+        <span class="count">{{i + 1}}/{{data.half_image.length}}</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#half-carousel" role="button" data-slide="prev">
+      <span class="glyphicon icon-carousel-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#half-carousel" role="button" data-slide="next">
+      <span class="glyphicon icon-carousel-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

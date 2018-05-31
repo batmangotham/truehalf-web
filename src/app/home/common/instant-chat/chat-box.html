@@ -1,0 +1,35 @@
+<div class="pop-wrap">
+  <div class="pop-name">
+    <p class="robo-med-14">
+      <i *ngIf="half.status==='online';else offline" class="icon-online green"></i>
+      <ng-template #offline>
+        <i class="icon-online"></i>
+      </ng-template>
+      {{half.displayName}}
+      <i class="material-icons" (click)="closeBox()">close</i>
+    </p>
+  </div>
+  <div class="pop-msg" #scrollMe>
+    <div *ngFor="let msg of data" #messages>
+      <p *ngIf="userId==msg.sender;else receiveBlock" class="msg-sent">
+        <span class="i-msg">{{msg.content}}</span>
+      </p>
+      <ng-template #receiveBlock>
+        <p class="msg-received">
+          <span class="i-msg">{{msg.content}}</span>
+        </p>
+      </ng-template>
+    </div>
+
+    <div class="instant-upgrade text-center" *ngIf="!_user.getCurrentUser().subscription">
+      <p class="text-center ral-bold-18 dark-grey">You are not a premium user</p>
+      <p class="light-grey">This feature is only available for premium users</p>
+      <a class="btn btn-default mt-10 ral-med-14" type="button" [routerLink]="['/upgrade']">Upgrade</a>
+    </div>
+
+  </div>
+  <div *ngIf="_user.getCurrentUser().subscription" class="pop-input" (keyup.enter)="sendMessage($event)">
+    <input type="text" class="form-control" placeholder="Enter message" [(ngModel)]="half.text">
+  </div>
+
+</div>

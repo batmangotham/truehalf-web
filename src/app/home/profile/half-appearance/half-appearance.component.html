@@ -1,0 +1,125 @@
+<app-loading [height]="200" *ngIf="loading"></app-loading>
+<div *ngIf="!show">
+  <form [formGroup]="form" class="profile-form">
+    <div class="row">
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <input type="number" formControlName="truehalf_min_height" matInput placeholder="Minimum height">
+          <span matSuffix>ft&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <input type="number" formControlName="truehalf_max_height" matInput placeholder="Maximum height">
+          <span matSuffix>ft&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Body Type" formControlName="truehalf_body_type">
+            <mat-option *ngFor="let item of data.all_body_type" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Eye Color" formControlName="truehalf_eye_color">
+            <mat-option *ngFor="let item of data.all_eye_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Hair Color" formControlName="truehalf_hair_color">
+            <mat-option *ngFor="let item of data.all_hair_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select multiple="true" placeholder="Skin Color" formControlName="truehalf_skin_color">
+            <mat-option *ngFor="let item of data.all_skin_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 text-right mt-20">
+        <button mat-button (click)="view()">Close</button>
+        <button (click)="onSubmit()" [disabled]="form.invalid && form.touched" type="submit" mat-raised-button color="primary" class="shadow-none">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row" *ngIf="show">
+  <div class="col-md-12 mt-20" *ngIf="!loading">
+    <table class="table user-profile-view">
+      <tr>
+        <td>Height</td>
+        <td>
+          <span *ngIf="apr.min_height">{{apr.min_height}}</span>
+          <span *ngIf="apr.min_height">ft</span>
+          <span *ngIf="apr.max_height">to {{apr.max_height}}</span>
+          <span *ngIf="apr.max_height">ft</span>
+          <span *ngIf="!apr.min_height" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Body type</td>
+        <td>
+          <span *ngFor="let item of apr.b_type;last as isLast">{{item.title}}
+            <span *ngIf="!isLast" class="light-grey">|</span>
+          </span>
+          <span *ngIf="!apr.b_type" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Eye color</td>
+        <td>
+          <span *ngFor="let item of apr.e_color;last as isLast">{{item.title}}
+            <span *ngIf="!isLast" class="light-grey">|</span>
+          </span>
+          <span *ngIf="!apr.e_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Hair color</td>
+        <td>
+          <span *ngFor="let item of apr.h_color;last as isLast"> {{item.title}}
+            <span *ngIf="!isLast" class="light-grey">|</span>
+          </span>
+          <span *ngIf="!apr.h_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Skin color</td>
+        <td>
+          <span *ngFor="let item of apr.s_color;last as isLast"> {{item.title}}
+            <span *ngIf="!isLast" class="light-grey">|</span>
+          </span>
+          <span *ngIf="!apr.s_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-20">
+      <button class="btn btn-edit no-padding" (click)="view()">
+        <i class="icon-edit"></i>Edit</button>
+    </div>
+  </div>
+</div>

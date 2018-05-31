@@ -1,0 +1,41 @@
+.card-shadow {
+  padding: 20px;
+}
+
+.reset-heading {
+  p {
+    &:first-of-type {
+      font-size: 18px;
+    }
+  }
+}
+
+.mail-sent {
+  i {
+    color: #4caf50;
+    font-size: 30px;
+    border: 2px solid;
+    border-radius: 31px;
+    padding: 6px;
+  }
+  p {
+    margin-bottom: 0;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+}
+
+.spinner-wrap {
+  .spinner {
+    top: 32%;
+  }
+}
+
+.error-wrap {
+  p {
+    font-size: 12px;
+    color: #f44336;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}

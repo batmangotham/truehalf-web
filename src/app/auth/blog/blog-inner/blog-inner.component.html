@@ -1,0 +1,24 @@
+<div class="container-fluid mt-60  bg-grey vh-100">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <!-- <p class="mt-40 mb-40 ral-bold-22 text-center">{{data.name}}</p> -->
+        <div class="col-sm-10 mt-40">
+          <div class="blog-item mb-40" *ngIf="!loading">
+            <img *ngIf="data.banner_image" [src]="data.banner_image" alt="" class="img-responsive">
+            <div class="blog-content">
+              <p class="ral-bold-18">{{data.title}}</p>
+              <p class="robo-reg-14 dark-grey blog-desc" [innerHTML]="data.description"></p>
+            </div>
+          </div>
+          <div *ngIf="loading" class="blog-item" style="float: left;height: 150px;width: 100%;">
+            <div class="spinner-wrap" [ngStyle]="{'height.px': 100}">
+              <mat-progress-spinner class="spinner" [diameter]="50" strokeWidth="5" color="primary" mode="indeterminate"></mat-progress-spinner>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

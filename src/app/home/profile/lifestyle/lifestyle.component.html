@@ -1,0 +1,83 @@
+<app-loading [height]="200" *ngIf="loading"></app-loading>
+
+<div *ngIf="!show">
+  <form [formGroup]="form" class="profile-form">
+    <div class="row">
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Smoking" formControlName="smoke">
+            <mat-option *ngFor="let item of data.all_smoke_type" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Drinking" formControlName="drink">
+            <mat-option *ngFor="let item of data.all_drink_type" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Occupation" formControlName="occupation">
+            <mat-option *ngFor="let item of data.all_occupation" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 text-right mt-20">
+      <button mat-button (click)="view()">Close</button>
+      <button (click)="onSubmit()" [disabled]="form.invalid && form.touched" type="submit" mat-raised-button color="primary" class="shadow-none">Update</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="show">
+  <div class="col-md-6 mt-20" *ngIf="!loading">
+    <table class="table user-profile-view">
+      <tr>
+        <td>
+          Smoking
+        </td>
+        <td>
+          <span *ngIf="life.smoke">{{life.smoke}}</span>
+          <span *ngIf="!life.smoke" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Drinking
+        </td>
+        <td>
+          <span *ngIf="life.drink">{{life.drink}}</span>
+          <span *ngIf="!life.drink" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Occupation
+        </td>
+        <td>
+          <span *ngIf="life.occupation">{{life.occupation}}</span>
+          <span *ngIf="!life.occupation" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-20">
+      <button class="btn btn-edit no-padding" (click)="view()">
+        <i class="icon-edit"></i>Edit</button>
+    </div>
+  </div>
+</div>

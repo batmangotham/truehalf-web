@@ -1,0 +1,143 @@
+// main: ../page.less
+
+.plan-block {
+  overflow: hidden;
+
+  .plan-name {
+    background-color: @pink;
+    // .gradient-45;
+    padding: 20px;
+    p {
+      margin-bottom: 0;
+      &.popular {
+        .roboto;
+        font-weight: 500;
+        font-size: 12px;
+        color: fade(@white, 80%);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      &.name {
+        .raleway;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: fade(@white, 95%);
+      }
+    }
+  }
+  .plan-details {
+    p {
+      padding: 15px;
+      margin-bottom: 0;
+      .roboto;
+      letter-spacing: 1px;
+      border-bottom: 1px solid @home-bg;
+      span {
+        &:first-of-type {
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 700;
+          color: fade(@black, 60%);
+        }
+        &:last-of-type {
+          font-weight: 400;
+          color: fade(@black, 90%);
+        }
+      }
+    }
+  }
+  .description {
+    padding: 15px;
+    font-weight: 700;
+    color: fade(@black, 60%);
+    border-bottom: 1px solid @home-bg;
+  }
+  .price {
+    padding: 20px;
+
+    p {
+      line-height: 1;
+      position: relative;
+      right: 10px;
+      .roboto;
+      color: fade(@black, 80%);
+      margin-bottom: 15px;
+      span {
+        &:first-of-type {
+          font-size: 18px;
+        }
+        &:last-of-type {
+          font-weight: 700;
+          font-size: 54px;
+        }
+      }
+    }
+  }
+  .btn.btn-default {
+    transition: all 0.3s ease-in-out;
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: @pink;
+    border: none;
+    border-radius: 50px;
+    color: @white;
+    .roboto;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    &:hover {
+      background-color: darken(@pink, 5%);
+    }
+  }
+}
+
+// success
+.success-block {
+  @media (min-width: 768px) {
+    padding: 40px;
+  }
+  padding: 20px 15px;
+  img {
+    width: 50px;
+    margin: 0 auto;
+  }
+  p {
+    .roboto;
+    &.heading {
+      .mt-20;
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-weight: 700;
+      color: @text-color-2;
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+    }
+    &.desc {
+      color: @text-color-1;
+      .mb-20;
+      @media (max-width: 767px) {
+        font-size: 13px;
+      }
+    }
+  }
+  .btn.btn-default {
+    transition: all 0.3s ease-in-out;
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: transparent;
+    border-color: @blue;
+    border-radius: 50px;
+    color: @blue;
+    .roboto;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    &:hover {
+      color: darken(@blue, 10%);
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<div class="col-md-9">
+  <p class="ral-med-18 mb-20">Message</p>
+  <div class="row">
+    <div class="card-wrap mb-20">
+      <div class="card-shadow">
+        <div class="col-sm-5 no-padding">
+          <div class="msg-left">
+            <p class="chat-heading">Chat list</p>
+            <div class="msg-name-list">
+              <div class="msg-name" *ngIf="_user.getCurrentUser().subscription;else subscribe">
+                <table class="table name-list" *ngIf="users.data && !users.loading">
+                  <tr *ngIf="trueHalf" class="truehalf" [routerLink]="['th-key','007']">
+                    <td>
+                      <img src="../../../../assets/img/logo.jpg" alt="" class="img-responsive">
+                    </td>
+                    <td>
+                      <p class="name ral-bold-16">Truehalf</p>
+                      <p class="last-msg"></p>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let user of users.data" [routerLink]="['th-key',user.id]" routerLinkActive="active" (click)="setHalf(user)">
+                    <td>
+                      <img *ngIf="user.profile_pic" [src]="user.profile_pic" alt="" class="img-responsive w-100">
+                      <span class="chat-counter" *ngIf="user.unreadCount > 0">{{user.unreadCount}}</span>
+                    </td>
+                    <td>
+                      <p class="name" *ngIf="user.name">{{user.name}}
+                        <span class="online-icon">
+                          <!-- <i class="icon-online green"></i> -->
+                        </span>
+                      </p>
+                      <p class="last-msg" *ngIf="user.lastMessage">{{user.lastMessage}}</p>
+                    </td>
+                  </tr>
+                </table>
+                <ng-template *ngIf="users.empty">
+                  <div class="text-center light-grey message-loading">
+                    No chats yet
+                  </div>
+                </ng-template>
+              </div>
+              <ng-template #subscribe>
+                <div class="msg-name">
+                  <table class="table name-list grey-block">
+                    <tr *ngIf="trueHalf" class="truehalf" [routerLink]="['th-key','007']">
+                      <td>
+                        <img src="../../../../assets/img/logo.jpg" alt="" class="img-responsive">
+                      </td>
+                      <td>
+                        <p class="name ral-bold-16">Truehalf</p>
+                        <p class="last-msg"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="dummy-img"></div>
+                        <!-- <img alt="" class="img-responsive w-100"> -->
+                        <!-- <span class="chat-counter" *ngIf="user.unreadCount > 0">{{user.unreadCount}}</span> -->
+                      </td>
+                      <td>
+                        <p class="name">
+                          <!-- <span class="online-icon">
+                            <i class="icon-online green"></i>
+                          </span> -->
+                        </p>
+                        <p class="last-msg"></p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ng-template>
+              <div *ngIf="users.loading" class="mt-40 user-list">
+                <!-- <p>Loading user list</p> -->
+                <mat-progress-spinner class="spinner" [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7 no-padding">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

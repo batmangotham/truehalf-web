@@ -1,0 +1,39 @@
+<div *ngIf="!handle.isMessage" class="col-md-3  hidden-xs hidden-sm">
+  <div class="instant-chat">
+    <p class="instant-heading">Online</p>
+    <table class="table table-condensed">
+      <tr *ngFor="let user of users.item" (click)="addChatPop(user)">
+        <td>
+          <img *ngIf="user.profile_pic" [src]="user.profile_pic" alt="" class="img-responsive">
+        </td>
+        <td>
+          <span *ngIf="user.name">{{user.name}}</span>
+        </td>
+        <td>
+          <span>
+            <i class="icon-online green"></i>
+          </span>
+        </td>
+        <td></td>
+      </tr>
+    </table>
+    <div class="col-xs-12" *ngIf="users.empty">
+      <p class="text-center robo-reg-14 grey">No online users</p>
+    </div>
+  </div>
+</div>
+
+<div class="container instant-pop" *ngIf="!handle.isMessage">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="instant-width">
+          <div class="col-md-4" *ngFor="let item of data;index as i">
+            <app-chat-box (closeChat)="getCloseIndex($event)" *ngIf="item.id && i < 3" [halfIndex]="i" [halfId]="item.id">
+            </app-chat-box>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

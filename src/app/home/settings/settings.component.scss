@@ -1,0 +1,81 @@
+.va-middle {
+  tr {
+    td {
+      vertical-align: middle;
+      padding: 0 8px;
+    }
+  }
+}
+
+.btn-edit {
+  // margin-left: 40px;
+}
+
+.loading-btn {
+  position: relative;
+  width: 80px;
+  display: block;
+  text-align: left;
+  span {
+    position: absolute;
+    right: -8px;
+    top: 1px;
+  }
+}
+
+.v-middle {
+  tr {
+    td {
+      vertical-align: middle;
+    }
+  }
+}
+
+.cancel-btn {
+  background-color: transparentize(#3973e7, 0.9);
+  border-radius: 100px;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  margin-right: 10px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.top-border {
+  border-top: 1px solid #eceff1;
+  padding-top: 20px;
+}
+
+.err-text {
+  color: #f44336;
+  text-align: right;
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.card-shadow {
+  padding: 20px;
+}
+
+.mat-raised-button {
+  line-height: 32px;
+  min-width: 80px;
+}
+
+.blocked-list.table {
+  tr {
+    td {
+      vertical-align: middle;
+      border: none;
+      &:first-of-type {
+        width: 60px;
+        img {
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}

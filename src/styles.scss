@@ -1,0 +1,709 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./assets/less/page.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+
+$white: #fff;
+$blue: #3973e7;
+$grey: #777;
+$pink: #f95768;
+$red-error: #f44336;
+$black: #000000;
+
+// body {
+//   overflow-y: scroll;
+// }
+
+.failed {
+  color: $red-error;
+  font-size: 42px;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: $white;
+}
+
+.bs-datepicker-head button {
+  color: #607d8b;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: $blue;
+}
+.theme-green .bs-datepicker-body table td span.selected {
+  background-color: $blue;
+}
+
+.snack-bg {
+  background: $white;
+  .mat-simple-snackbar-action {
+    color: $grey;
+  }
+  .mat-simple-snackbar {
+    color: $red-error;
+
+    letter-spacing: 0.2px;
+  }
+}
+
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary {
+  color: $blue;
+}
+
+.new-blue.mat-primary.mat-raised-button {
+  background-color: $blue;
+  border-radius: 100px;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.card-btm {
+  li {
+    .mat-icon-button {
+      position: relative;
+      top: -4px;
+      mat-icon {
+        color: #9e9e9e;
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+.spinner-wrap {
+  position: relative;
+  float: left;
+  width: 100%;
+  .spinner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    &.new {
+      top: 30%;
+    }
+  }
+}
+
+.profile-form {
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+.blue {
+  color: $blue !important;
+}
+
+.pink {
+  color: $pink !important;
+}
+
+.snack-home {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+  background: $white;
+  .mat-simple-snackbar-action {
+    color: $pink;
+  }
+  .mat-simple-snackbar {
+    color: darken($grey, 20%);
+    letter-spacing: 0.2px;
+  }
+}
+
+.snack-internet {
+  @extend.snack-home;
+  background-color: $pink;
+  &.mat-snack-bar-container {
+    border-radius: 6px;
+  }
+  .mat-simple-snackbar-action {
+    color: $white;
+  }
+
+  .mat-simple-snackbar {
+    color: $white;
+    letter-spacing: 0.2px;
+  }
+}
+
+.empty-block {
+  height: 100px;
+  p {
+    left: 0;
+    top: 50%;
+    right: 0;
+    position: absolute;
+  }
+}
+
+.drop-icon {
+  position: relative;
+  top: 7px;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.online-check {
+  margin-left: 5px;
+  .mat-checkbox-inner-container {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.btn-load.mat-raised-button {
+  padding: 4px 20px;
+  border-radius: 42px;
+  width: 150px;
+  box-shadow: none !important;
+  margin-top: 20px;
+  &:hover {
+    color: $blue;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-dec {
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.not-available {
+  color: lighten($grey, 10%) !important;
+  font-weight: 200;
+}
+
+.fav-mobile {
+  @media (max-width: 767px) {
+    .ral-med-16 {
+      font-size: 15px;
+    }
+  }
+}
+
+.btn-book.mat-raised-button {
+  background-color: $pink;
+  color: $white;
+  border-radius: 29px;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.crop-upload {
+  position: relative;
+  margin: 0 auto;
+  height: 300px;
+
+  &:hover {
+    .choose-img {
+      border-color: lighten($blue, 20%);
+    }
+    .up-block {
+      i {
+        color: lighten($blue, 10%);
+      }
+    }
+  }
+  .choose-img {
+    i {
+      color: lighten($blue, 30%);
+      font-size: 40px;
+    }
+    border: 2px dashed lighten($blue, 30%);
+    margin: 15px 0;
+    border-radius: 6px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    .up-block {
+      margin-top: 18%;
+      padding: 20px 10px;
+      p {
+        font-weight: 600;
+        font-size: 12px;
+      }
+    }
+  }
+  button {
+    width: 100%;
+    border-radius: 40px;
+    box-shadow: none !important;
+  }
+  input[type="file"] {
+    width: 100%;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    right: 1px;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.img-cropper {
+  canvas {
+    // width: 100%;
+  }
+}
+
+.crop-dialog {
+  .mat-dialog-container {
+    overflow: hidden;
+    max-width: 100vw;
+    border-radius: 6px;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+}
+
+.prof-dialog {
+  @extend .crop-dialog;
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 6px;
+    .carousel-indicators {
+      display: none;
+    }
+  }
+}
+
+.mt-20-imp {
+  margin-top: 20px !important;
+}
+
+.profile-dialog {
+  position: relative;
+  position: relative;
+  float: left;
+  width: 100%;
+
+  i.delete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 2px;
+    background-color: transparentize($grey, 0.3);
+    color: $white;
+  }
+  .col-xs-12 {
+    position: absolute;
+    bottom: 10px;
+  }
+  .new-blue {
+    // background-color: transparent !important;
+    // border: 2px solid $white;
+    color: $white;
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
+  .carousel-control {
+    cursor: pointer;
+    top: 35px;
+    background-image: none;
+    .icon-prev,
+    .icon-next {
+      top: 40%;
+      font-size: 40px;
+    }
+  }
+  .carousel-item {
+    .set-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      text-align: center;
+    }
+  }
+  .pic-approval {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    background-color: transparentize($black, 0.3);
+    p {
+      margin-bottom: 0;
+      color: $white;
+    }
+  }
+  .image-grey {
+    background-color: lighten($grey, 40%);
+    height: 50px;
+  }
+}
+
+ul.image-list {
+  margin: 0 auto;
+  width: auto;
+  li {
+    padding: 5px;
+    height: 60px;
+    width: 60px;
+    &:first-of-type {
+      position: relative;
+      cursor: pointer;
+      i {
+        background-color: lighten($blue, 30%);
+        color: lighten($blue, 10%);
+        float: left;
+        width: 100%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        line-height: 50px;
+        vertical-align: middle;
+      }
+    }
+    &.active {
+      img {
+        border: 2px solid $blue;
+      }
+    }
+  }
+}
+
+.main-nav {
+  margin: 10px 0;
+  .carousel-nav {
+    width: 245px;
+    margin: 0 auto;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    .carousel-wrap {
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 60px;
+      width: auto;
+    }
+  }
+
+  .icon-carousel-left {
+    position: absolute;
+    left: 0;
+  }
+
+  .icon-carousel-right {
+    position: absolute;
+    right: 0;
+  }
+
+  .nav-control {
+    width: 32px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    line-height: 66px;
+    vertical-align: middle;
+    font-size: 18px;
+    cursor: pointer;
+    color: $grey;
+  }
+}
+
+.cropper-wrap {
+  .cropper-button {
+    margin-top: 20px;
+    .new-blue {
+      border: 2px solid $blue;
+    }
+    .mat-primary {
+      font-size: 13px;
+      min-width: 70px;
+      line-height: 30px;
+    }
+  }
+}
+
+.upload-progress {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: $white !important;
+  }
+}
+
+.upload-text {
+  margin-right: 20px;
+  color: transparentize($white, 0.2);
+}
+
+.new-blue.new-grey {
+  background-color: transparent !important;
+  border: 2px solid $grey !important;
+  color: $grey !important;
+}
+
+.profile-carousel {
+  position: relative;
+  .prof-control {
+    font-size: 30px;
+    color: $white;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    text-shadow: 0px 0px 6px $grey;
+  }
+  .icon-carousel-left {
+    left: 0;
+  }
+  .icon-carousel-right {
+    right: 0;
+  }
+  .set-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
+  }
+}
+
+#half-carousel {
+  .icon-carousel-left,
+  .icon-carousel-right {
+    top: 30%;
+    font-size: 35px;
+  }
+  .count {
+    position: absolute;
+    position: absolute;
+    bottom: 10px;
+    margin: 0 auto;
+    left: 0;
+    text-align: center;
+    right: 0;
+    color: $white;
+    width: 40px;
+    background-color: transparentize(#000, 0.5);
+    height: 22px;
+    border-radius: 10px;
+  }
+}
+
+.see-index {
+  position: absolute;
+  top: 10px;
+  font-size: 18px;
+}
+
+.message-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  .spinner {
+    margin: 0 auto;
+  }
+}
+
+.card-shadow {
+  .check-wrap {
+    margin-bottom: 30px;
+    img {
+      width: 60px;
+      margin: 0 auto;
+      // opacity: 1;
+    }
+
+    i {
+      font-size: 34px;
+      color: #4caf50;
+    }
+    .btn.btn-default {
+      color: white;
+      border: none;
+      border-radius: 29px;
+      padding: 8px 24px;
+      background-color: $blue;
+      &:hover {
+        background-color: lighten($blue, 5%);
+      }
+    }
+  }
+}
+
+.loading-btn {
+  .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: #fff !important;
+  }
+}
+
+.change-pswd {
+  .mat-form-field-subscript-wrapper {
+    margin-top: -12px;
+  }
+}
+
+.mat-dialog-container {
+  margin: 0 auto;
+}
+
+.user-list {
+  .spinner {
+    margin: 0 auto;
+  }
+}
+
+.upgrade-dialog {
+  .mat-dialog-container {
+    border-radius: 8px;
+    padding: 20px;
+  }
+}
+
+.link-block {
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+}
+
+.hide-age {
+  .mat-checkbox-inner-container {
+    height: 18px;
+    width: 18px;
+  }
+
+  .mat-checkbox-label {
+    font-weight: 500;
+    color: #4d4d4d;
+  }
+}
+
+#tawk_5a8ea6f14b401e45400d1f53 {
+  float: left;
+  width: 100%;
+  height: 500px;
+  div {
+    iframe[style] {
+      width: 100% !important;
+    }
+  }
+}
+
+.login-contact {
+  .mat-form-field {
+    width: 100%;
+    .mat-form-field-subscript-wrapper {
+      top: 54px;
+    }
+
+    &:not(:last-of-type) {
+      .mat-form-field-subscript-wrapper {
+        top: 40px;
+      }
+    }
+  }
+}
+
+ul.book-list {
+  font-weight: 500;
+  li {
+    cursor: pointer;
+    span {
+      border: 1px solid #eee;
+      display: inline-block;
+      width: 25px;
+      text-align: center;
+      margin-bottom: 10px;
+      height: 25px;
+      line-height: 25px;
+      font-size: 12px;
+      border-radius: 4px;
+      color: $grey;
+      &.booked {
+        background-color: lighten($grey, 10%);
+        color: darken($grey, 15%);
+      }
+      &.checked {
+        background-color: green;
+        color: white;
+      }
+    }
+  }
+}
+
+.book-header {
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  .book-details {
+    .price {
+      margin-bottom: 0;
+      @media (min-width: 768px) {
+        margin-top: 20px;
+      }
+      @extend .blue;
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+    }
+  }
+  .book-title {
+    @media (max-width: 767px) {
+      p {
+        &:first-of-type {
+          font-size: 18px;
+        }
+      }
+    }
+
+    // .light-grey {
+    //   @media (max-width: 767px) {
+    //     margin-bottom: 0;
+    //   }
+    // }
+  }
+}
+
+.book-footer {
+  float: left;
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  button {
+    &.mat-raised-button {
+      box-shadow: none;
+    }
+    &:first-child {
+      // margin-right: 10px;
+    }
+  }
+}
+
+.no-pad-mob {
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,81 @@
+<app-loading [height]="200" *ngIf="loading"></app-loading>
+<div *ngIf="!show">
+  <form [formGroup]="form" class="profile-form">
+    <div class="row">
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Language" formControlName="language">
+            <mat-option *ngFor="let item of data.all_language" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Education" formControlName="education">
+            <mat-option *ngFor="let item of data.all_education" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Religion" formControlName="religion">
+            <mat-option *ngFor="let item of data.all_religion" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 text-right mt-20">
+      <button mat-button (click)="view()">Close</button>
+      <button (click)="onSubmit()" type="submit" mat-raised-button color="primary" class="shadow-none">Update</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="show">
+  <div class="col-md-6 mt-20" *ngIf="!loading">
+    <table class="table user-profile-view">
+      <tr>
+        <td>
+          Language
+        </td>
+        <td>
+          <span *ngIf="bckgd.language">{{bckgd.language}}</span>
+          <span *ngIf="!bckgd.language" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Education
+        </td>
+        <td>
+          <span *ngIf="bckgd.education">{{bckgd.education}}</span>
+          <span *ngIf="!bckgd.education" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Religion
+        </td>
+        <td>
+          <span *ngIf="bckgd.religion">{{bckgd.religion}}</span>
+          <span *ngIf="!bckgd.religion" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-20">
+      <button class="btn btn-edit no-padding" (click)="view()">
+        <i class="icon-edit"></i>Edit</button>
+    </div>
+  </div>
+</div>

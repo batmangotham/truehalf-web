@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <div class="card-wrap">
+      <div class="card-shadow">
+        <div class="success-block text-center" *ngIf="data.saleId">
+          <img src="../../../../assets/img/success.svg" alt="" class="img-responsive">
+          <p class="heading">Payment successful</p>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+              <p class="desc">Your payment is successful
+                <br>Your account will be upgraded to premium within 24 hours.
+              </p>
+              <a class="btn btn-default" [routerLink]="['/home']" role="button">back to home</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="verify" *ngIf="data.loading">
+          <div class="loading-blue text-center">
+            <p class="dark-grey ral-bold-18">Please wait untill the payment is verified</p>
+            <img src="../../../../assets/img/ellipsis.svg" alt="" class="img-responsive">
+            <p class="robo-reg-14 dark-grey">Verifying payment...</p>
+          </div>
+        </div>
+        <div class="mt-40 mb-40 success-block text-center" *ngIf="data.error">
+          <p>
+            <i class="material-icons failed">report_problem</i>
+          </p>
+          <p class="dark-grey ral-bold-18">Payment failed</p>
+          <p class="light-grey roboto" *ngIf="data.error_msg;else default">{{data.error_msg}}</p>
+          <ng-template #default>
+            <p class="light-grey roboto">Something went wrong.Try agin later</p>
+          </ng-template>
+          <a class="mt-20 blue" [routerLink]="['/home']" role="button">back to home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

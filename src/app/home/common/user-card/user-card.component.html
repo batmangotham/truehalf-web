@@ -1,0 +1,59 @@
+<div class="col-xs-12 empty-block" *ngIf="empty">
+  <p class="text-center ral-bold-18">{{empty}}</p>
+</div>
+<div *ngIf="users">
+  <div class="col-sm-4 col-xs-12 mb-20" *ngFor="let user of users;index as i;">
+    <div class="user-card no-padding">
+      <div class="card-shadow br-6">
+        <img *ngIf="user.profile_pic;else dummy" [routerLink]="['/profile',user.id]" [src]="user.profile_pic" class="img-responsive no-dec">
+        <ng-template #dummy>
+          <img src="../../../../assets/img/user-dummy.png" class="img-responsive">
+        </ng-template>
+        <div class="user-details">
+          <div class="user-name">
+            <p>{{user.name}}
+              <span>
+                <i *ngIf="user.online_status===1" class="icon-online green"></i>
+                <i *ngIf="user.online_status===0" class="icon-online"></i>
+              </span>
+            </p>
+          </div>
+          <div class="person-details">
+            <p *ngIf="user.age">
+              <span>{{user.age}}</span>
+              <span>years old</span>
+            </p>
+            <p *ngIf="user.distance">{{user.distance | number:'1.0-0'}} miles away</p>
+          </div>
+          <ul class="list-inline card-btm">
+            <li>
+              <button mat-icon-button (click)="addChat(user)">
+                <mat-icon class="mat-24 icon-message"></mat-icon>
+              </button>
+            </li>
+            <li>
+
+              <button mat-icon-button (click)="isWinked(user,i)">
+
+                <mat-icon class="mat-24 icon-winks" [class.blue]="hasWink(user)"></mat-icon>
+              </button>
+            </li>
+            <li>
+              <button mat-icon-button (click)="isFav(user,i)">
+                <mat-icon class="mat-24" [class.pink]="hasFav(user)">
+                  <span *ngIf="hasFav(user);else notFav">favorite</span>
+                  <ng-template #notFav>
+                    <span>
+                      favorite_border
+                    </span>
+                  </ng-template>
+
+                </mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

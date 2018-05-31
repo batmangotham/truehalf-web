@@ -1,0 +1,109 @@
+<app-loading [height]="200" *ngIf="loading"></app-loading>
+<div *ngIf="!show">
+  <form [formGroup]="form" class="profile-form">
+    <div class="row">
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <input type="number" formControlName="height" matInput placeholder="Height">
+          <span matSuffix>ft&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Body Type" formControlName="body_type">
+            <mat-option *ngFor="let item of data.all_body_type" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Eye Color" formControlName="eye_color">
+            <mat-option *ngFor="let item of data.all_eye_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Hair Color" formControlName="hair_color">
+            <mat-option *ngFor="let item of data.all_hair_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 mt-20">
+        <mat-form-field>
+          <mat-select placeholder="Skin Color" formControlName="skin_color">
+            <mat-option *ngFor="let item of data.all_skin_color" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 text-right mt-20">
+        <button mat-button (click)="view()">Close</button>
+        <button (click)="onSubmit()" [disabled]="form.invalid && form.touched" type="submit" mat-raised-button color="primary" class="shadow-none">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row" *ngIf="show">
+  <div class="col-md-6 mt-20" *ngIf="!loading">
+    <table class="table user-profile-view">
+      <tr>
+        <td>Height</td>
+        <td>
+          <span *ngIf="userData.height">{{userData.height}}</span>
+          <span *ngIf="userData.height">ft</span>
+          <span *ngIf="!userData.height" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Body type</td>
+        <td>
+          <span> {{apr.b_type}}</span>
+          <span *ngIf="!apr.b_type" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Eye color</td>
+        <td>
+          <span> {{apr.e_color}}</span>
+          <span *ngIf="!apr.e_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Hair color</td>
+        <td>
+          <span> {{apr.h_color}}</span>
+          <span *ngIf="!apr.h_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Skin color</td>
+        <td>
+          <span> {{apr.s_color}}</span>
+          <span *ngIf="!apr.s_color" class="btn btn-edit no-padding" (click)="view()">
+            <i class="icon-edit"></i>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-20">
+      <button class="btn btn-edit no-padding" (click)="view()">
+        <i class="icon-edit"></i>Edit</button>
+    </div>
+  </div>
+</div>

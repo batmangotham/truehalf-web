@@ -1,0 +1,60 @@
+<div class="col-md-7">
+  <div class="card-wrap no-padding">
+    <div class="card-shadow">
+      <div class="event-main">
+        <div class="overlay">
+
+        </div>
+        <div class="event-content">
+          <!-- <p>
+            <i class="icon-events"></i>
+          </p> -->
+          <p class="ral-bold-22">{{data.title}}</p>
+          <p class="robo-light-18">{{data.type}}</p>
+
+        </div>
+        <img *ngIf="data.banner_image" [src]="data.banner_image" alt="" class="img-responsive w-100">
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap no-padding mt-20">
+    <div class="card-shadow">
+      <div class="row m-0">
+        <div class="col-md-6 no-padding">
+          <img *ngIf="data.image" [src]="data.image" alt="" class="img-responsive w-100">
+        </div>
+        <div class="col-md-6 text-center event-right">
+          <p class="robo-reg-14 payment">
+            <span class="paid" *ngIf="data.payment_status;else free">Paid</span>
+            <ng-template #free>
+              <span class="free">Free</span>
+            </ng-template>
+          </p>
+          <div class="event-item">
+            <p class="ral-bold-22">{{data.title}}</p>
+            <p class="dark-grey robo-light-18">
+              <i class="icon-location"></i>
+              <span>{{data.location}}</span>
+            </p>
+            <p class="dark-grey">
+              <span>{{data.start_date | date:'mediumDate'}}</span>
+              <span>to</span>
+              <span>{{data.end_date | date:'mediumDate'}}</span>
+            </p>
+            <button mat-raised-button class="btn-book" (click)="openBooking()">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap no-padding mt-20">
+    <div class="card-shadow">
+      <div class="row m-0">
+        <div class="col-xs-12 mt-20">
+          <p class="ral-bold-18">Description</p>
+          <p class="dark-grey mb-20" [innerHTML]="data.description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

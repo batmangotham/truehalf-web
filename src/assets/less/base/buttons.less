@@ -1,0 +1,188 @@
+// main: ../page.less
+.btn.btn-grad {
+  .gradient-45;
+  color: @white;
+  border: none;
+  .rale(16px,500);
+  border-radius: 30px;
+  padding: 8px 20px;
+  .trans(all 0.2s ease-in);
+  &:hover,
+  &:focus {
+    color: @white;
+    .gradient-45;
+    .box-shadow(0px,0px);
+  }
+}
+
+.btn.btn-view {
+  color: @white;
+  .raleway;
+  span {
+    i {
+      .trans(all 0.3s ease);
+      position: relative;
+      top: 1px;
+      left: 4px;
+      font-size: 12px;
+    }
+  }
+  &:hover {
+    color: @white;
+    span > i {
+      left: 10px;
+    }
+  }
+}
+
+.round-btn {
+  height: 50px;
+  width: 50px;
+  display: block;
+  border-radius: 100%;
+  background-color: @white;
+  position: relative;
+  .box-shadow(0,0);
+}
+
+.btn.btn-like {
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    .no-shadow;
+    span {
+      .button-scale;
+    }
+  }
+  span {
+    .round-btn;
+    i {
+      font-size: 32px;
+      position: relative;
+      top: 7px;
+      color: #4caf50;
+    }
+  }
+}
+
+.btn.btn-dislike {
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    .no-shadow;
+    span {
+      .button-scale;
+    }
+  }
+  span {
+    .round-btn;
+    i {
+      font-size: 20px;
+      position: relative;
+      top: 14px;
+      color: #f44336;
+    }
+  }
+}
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.button-scale {
+  animation: anim-effect-boris 0.3s forwards;
+  @keyframes anim-effect-boris {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+    25%,
+    50% {
+      opacity: 1;
+      transform: scale3d(1.2, 1.2, 1);
+      .box-shadow(0,0,40px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
+  }
+}
+
+.btn.btn-edit {
+  background-color: transparent;
+  color: @blue;
+  &:focus,
+  &:active {
+    outline: 0 !important;
+    box-shadow: none;
+  }
+  .rale(14px,500);
+}
+
+.btn-default.btn-join {
+  color: @white;
+  margin-left: 20px;
+  .ral-semi-18;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 20px;
+  background-color: @pink;
+  transition: all 0.3s ease;
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+  &:hover {
+    background-color: fade(@pink, 90%);
+  }
+}
+
+.btn-upgrade {
+  background-color: @pink;
+  color: @white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 12px;
+  span {
+    position: relative;
+    top: -3px;
+    i {
+      font-size: 22px;
+      margin-right: 5px;
+      position: relative;
+      top: 5px;
+    }
+  }
+  &:hover,
+  &:focus {
+    outline: 0 !important;
+    color: @white !important;
+  }
+}
+
+.btn-default.btn-upgrade-blue {
+  border: none;
+  .btn-upgrade;
+  .grad-blue;
+  &:hover,
+  &:focus {
+    color: @white;
+    .grad-blue;
+  }
+}
+
+.btn.btn-blue {
+  background-color: @blue;
+  color: @white;
+  .roboto;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 24px;
+  &:hover,
+  &:focus {
+    color: @white;
+    background-color: darken(@blue, 10%);
+    outline: 0;
+  }
+}

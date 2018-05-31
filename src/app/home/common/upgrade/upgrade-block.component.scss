@@ -1,0 +1,12 @@
+.upgrade-wrapper {
+  .btn.btn-default {
+    border: none;
+    background-color: #ef5466;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    &:focus {
+      outline: 0;
+    }
+  }
+}

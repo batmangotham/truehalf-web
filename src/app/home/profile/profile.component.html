@@ -1,0 +1,134 @@
+<div class="col-md-7">
+  <app-loading [height]="200" *ngIf="loading"></app-loading>
+  <div *ngIf="!loading">
+    <p class="ral-med-18 mb-20">Profile</p>
+    <div class="row">
+      <div class="card-wrap">
+        <div class="card-shadow">
+          <div class="col-sm-5 no-padding">
+            <div class="profile-summary">
+              <div class="profile-inner-wrap">
+                <div class="p-rel add-photo">
+                  <img [src]="userService.getCurrentUser().profile_pic" alt="" class="img-responsive br-6 w-100">
+                  <a class="pointer" (click)="openModal('add')">
+                    <span>Add photo
+                      <i class="icon-pluse"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="row" *ngIf="(user.images.length - 1) > 0">
+                  <div class="col-xs-12">
+                    <p class="roboto dark-grey mt-20">Profile photos</p>
+                    <!-- <div class="row">
+                      <div class="col-sm-4 col-xs-3">
+                        <img [src]="user.profile_pic" alt="" class="img-responsive br-6">
+                      </div>
+                      <div class="col-sm-4 col-xs-3">
+                        <img [src]="user.profile_pic" alt="" class="img-responsive br-6">
+                      </div>
+                    </div> -->
+                    <table class="table more-pic">
+                      <tr>
+                        <td>
+                          <div (click)="openModal('view')">
+                            <span>
+                              <i class="icon-pluse"></i>{{user.images.length-1}}</span>
+                          </div>
+                          <img [src]="getLast()" alt="" class="img-responsive br-6">
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 no-padding text-center">
+            <div class="white-panel profile-summary-details br-6">
+              <p class="robo-reg-22 black">{{user.name}}</p>
+              <table class="table user-profile-view">
+                <tr>
+                  <td>Date of birth
+
+                  </td>
+                  <td>
+                    <span>{{user.dob_new}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="user.location">
+                  <td>Location</td>
+                  <td>
+                    {{user.location}}
+                  </td>
+                </tr>
+                <tr *ngIf="data.show">
+                  <td>Age</td>
+                  <td>
+                    {{user.age}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>
+                    {{user.gender}}
+                  </td>
+                </tr>
+              </table>
+              <div class="hide-age mt-20">
+                <mat-slide-toggle (change)="toggleAge()" [checked]="!data.show">Hide age and birth year</mat-slide-toggle>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="robo-reg-18 mb-20 mt-20">About me</p>
+    <div class="row">
+      <div class="card-wrap">
+        <div class="card-shadow">
+          <div class="col-sm-12 no-padding">
+            <div class="profile-summary">
+              <div class="profile-inner-wrap">
+                <mat-tab-group dynamicHeight="true">
+                  <mat-tab label="Appearance">
+                    <app-profile-appearance></app-profile-appearance>
+                  </mat-tab>
+                  <mat-tab label="Background">
+                    <app-profile-background></app-profile-background>
+                  </mat-tab>
+                  <mat-tab label="Lifestyle">
+                    <app-profile-lifestyle></app-profile-lifestyle>
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="robo-reg-18 mb-20 mt-20">About my date</p>
+    <div class="row">
+      <div class="card-wrap">
+        <div class="card-shadow">
+          <div class="col-sm-12 no-padding">
+            <div class="profile-summary">
+              <div class="profile-inner-wrap">
+                <mat-tab-group dynamicHeight="true">
+                  <mat-tab label="Appearance">
+                    <app-half-appearance></app-half-appearance>
+                  </mat-tab>
+                  <mat-tab label="Background">
+                    <app-half-background></app-half-background>
+                  </mat-tab>
+                  <mat-tab label="Lifestyle">
+                    <app-half-lifestyle></app-half-lifestyle>
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

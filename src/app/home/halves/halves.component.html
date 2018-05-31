@@ -1,0 +1,108 @@
+<div class="col-md-7">
+  <p class="ral-med-18 mb-20">Halves</p>
+  <div class="row">
+    <div class="card-wrap">
+      <div class="card-shadow">
+        <div *ngIf="!user.empty" class="col-sm-6 no-padding">
+          <div *ngIf="!user.loading" class="profile-inner-wrap">
+            <div class="p-rel">
+              <div id="carousel-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div [ngClass]="{active: isFirst}" class="item" *ngFor="let item of user.media;first as isFirst">
+                    <img *ngIf="item.image_path" [src]="item.image_path" alt="" class="img-responsive br-6-new w-100">
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+                  <ul class="list-inline mt-40 suggested-buttons halves">
+                    <li>
+                      <a class="btn btn-dislike" (click)="getHalves()">
+                        <span>
+                          <i class="icon-dislike"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="btn btn-like" (click)="addFav(user.id)">
+                        <span>
+                          <i class="icon-liked"></i>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-generic" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-generic" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!user.empty" class="col-sm-6 no-padding text-center">
+          <div *ngIf="!user.loading" class="white-panel profile-summary-details br-6">
+            <p class="robo-reg-16 dark-grey  m-0">{{user.name}}
+              <span class="age-badge">{{user.age}}</span>
+            </p>
+            <p class="robo-light-14 grey">{{user.location}}<span *ngIf="user.distance">,{{user.distance | number:'1.0-0'}} miles away</span></p>
+            <!-- <table class="table table-condensed profile-img">
+                                        <tr>
+                                            <td>
+                                                <a href="">
+                                                    <img src="../../../assets/img/user-profile.png" alt="" class="img-responsive">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    <img src="../../../assets/img/user-profile.png" alt="" class="img-responsive">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    <img src="../../../assets/img/user-profile.png" alt="" class="img-responsive">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    <img src="../../../assets/img/user-profile.png" alt="" class="img-responsive">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    <div class="more-images">
+                                                        <div class="blue-overlay">
+                                                            <span>+2</span>
+                                                        </div>
+                                                        <img src="img/user-profile.png" alt="" class="img-responsive">
+                                                    </div>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table> -->
+            <!-- <p class="robo-reg-14 dark-grey mt-10">Likes</p>
+                                    <div class="likes-wrap">
+                                        <span class="like-badge">World Travel</span>
+                                        <span class="like-badge">Kylie Jenner Shop</span>
+                                        <span class="like-badge">World Travel</span>
+                                        <span class="like-badge">World Travel</span>
+                                        <span class="like-badge">World Travel</span>
+                                    </div> -->
+            <!-- <ul class="list-inline reaction-wrap">
+                                        <li><a href="#"><span><i class="icon-message"></i></span></a></li>
+                                        <li><a href="#"><span><i class="icon-winks"></i></span></a></li>
+                                        <li><a href="#"><span><i class="icon-add-favourit pink"></i></span></a></li>
+                                    </ul> -->
+          </div>
+        </div>
+        <div class="col-xs-12" *ngIf="user.empty">
+          <p class="text-center ral-bold-18 mt-40 mb-40">No user suggestions</p>
+        </div>
+        <app-loading [height]="300" *ngIf="user.loading"></app-loading>
+      </div>
+    </div>
+  </div>
+</div>

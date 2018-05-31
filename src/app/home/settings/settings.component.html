@@ -1,0 +1,166 @@
+<div class="col-md-7">
+  <p class="ral-med-18 mb-20">Settings</p>
+  <div class="row">
+    <div class="card-wrap">
+      <div class="card-shadow">
+        <div class="col-xs-12">
+          <p class="robo-reg-16 dark-grey">Profile setiings
+          </p>
+        </div>
+        <div class="col-md-8 mb-20 " *ngIf="user.isProfile">
+          <table class="table user-profile-view">
+            <tr>
+              <td>Username</td>
+              <td>{{_user.getCurrentUser().username}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{{_user.getCurrentUser().email}}</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>{{_user.getCurrentUser().name}}</td>
+            </tr>
+            <tr>
+              <td>Date of birth</td>
+              <td>{{_user.getCurrentUser().dob}}</td>
+            </tr>
+            <tr>
+              <td>Location</td>
+              <td>{{_user.getCurrentUser().location}}</td>
+            </tr>
+          </table>
+          <p>
+            <span *ngIf="user.isProfile" class="btn btn-edit no-padding mt-20" (click)="viewProfileEdit()">
+              Edit
+              <i class="icon-edit"></i>
+            </span>
+          </p>
+        </div>
+        <div class="col-sm-6 mb-20" *ngIf="!user.isProfile">
+          <form action="" [formGroup]="profileForm">
+            <mat-form-field>
+              <input formControlName="name" matInput placeholder="Name">
+            </mat-form-field>
+            <mat-form-field>
+              <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="Date of birth">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select formControlName="location" placeholder="Location">
+                <mat-option *ngFor="let item of user.locations" [value]="item.id">
+                  {{ item.location }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="text-right">
+              <button mat-raised-button class="cancel-btn" (click)="cancelSubmit()">Cancel</button>
+              <button (click)="profileSubmit()" [disabled]="(profileForm.invalid && profileForm.touched) || user.profile_loading" mat-raised-button
+                color="primary" class="new-blue">
+                <span *ngIf="!user.profile_loading">
+                  Update
+                </span>
+                <span *ngIf="user.profile_loading" class="loading-btn">
+                  Updating
+                  <span>
+                    <mat-progress-spinner [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 top-border">
+          <p class="robo-reg-16 dark-grey">Password settings
+          </p>
+        </div>
+        <div class="col-sm-8 col-md-6" *ngIf="user.isPswd">
+          <table class="table user-profile-view v-middle">
+            <tr>
+              <td>Password</td>
+              <td>********</td>
+            </tr>
+          </table>
+          <p>
+            <span *ngIf="user.isProfile" class="btn btn-edit no-padding mt-10" (click)="viewPswdEdit()">
+              Edit
+              <i class="icon-edit"></i>
+            </span>
+          </p>
+        </div>
+        <div class="col-md-6 mb-20 change-pswd" *ngIf="!user.isPswd">
+          <form [formGroup]="pswdForm">
+
+            <mat-form-field>
+              <input type="password" formControlName="previous_password" matInput placeholder="Current Password">
+              <mat-error *ngIf="pswdForm.controls.previous_password.hasError('minlength')">
+                Must be minimum 6 characters
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <input type="password" formControlName="password" matInput placeholder="New Password">
+              <mat-error *ngIf="pswdForm.controls.password.hasError('minlength')">
+                Must be minimum 6 characters
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <input type="password" formControlName="password_confirmation" matInput placeholder="Confirm Password">
+              <mat-error *ngIf="pswdForm.controls.password.hasError('minlength')">
+                Must be minimum 6 characters
+              </mat-error>
+            </mat-form-field>
+
+            <div class="text-right">
+              <button mat-raised-button class="cancel-btn" (click)="cancelSubmit('p')">Cancel</button>
+              <button (click)="pswdSubmit()" [disabled]="(pswdForm.invalid && pswdForm.touched) || pswdForm.invalid" mat-raised-button
+                color="primary" class="new-blue">
+                <span *ngIf="!user.pswd_loading">
+                  Update
+                </span>
+                <span *ngIf="user.pswd_loading" class="loading-btn">
+                  Updating
+                  <span>
+                    <mat-progress-spinner [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+                  </span>
+                </span>
+              </button>
+              <p class="err-text" *ngIf="user.error">
+                {{user.error}}
+              </p>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 top-border">
+          <p class="robo-reg-16 dark-grey">Blocked users
+          </p>
+          <table class="table blocked-list mb-0" *ngIf="user.blocked">
+            <tr *ngFor="let item of user.blocked;index as i">
+              <td>
+                <img [src]="item.profile_pic" alt="" class="img-responsive">
+              </td>
+              <td class="roboto dark-grey">{{item.name}}</td>
+              <td>
+                <button [disabled]="item.loading" class="btn btn-default" role="button" (click)="unblockUser(item,i)">Unblock</button>
+              </td>
+            </tr>
+          </table>
+          <div *ngIf="user.loading" class="user-list">
+            <mat-progress-spinner class="spinner" [diameter]="30" strokeWidth="3" color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <p class="robo-reg-14 grey" *ngIf="user.empty && !user.loading">List is empty</p>
+        </div>
+        <div class="col-xs-12 top-border">
+          <p class="robo-reg-16 dark-grey">Contact
+          </p>
+          <a class="pointer blue" (click)="openContact()">Send a message</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

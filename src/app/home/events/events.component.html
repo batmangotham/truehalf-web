@@ -1,0 +1,115 @@
+<div class="col-md-7">
+  <app-loading [height]="200" *ngIf="data.loading!=2"></app-loading>
+</div>
+<div class="col-md-7" *ngIf="data.loading==2">
+  <p class="ral-med-18 mb-20">Events</p>
+  <div class="row mob-margin">
+    <div class="card-wrap mb-20">
+      <div class="card-shadow table-responsive">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <table class="table search-bar event-search">
+            <tr>
+              <td>
+                <span>
+                  <div class="form-group">
+                    <mat-form-field>
+                      <input formControlName="location" type="text" matInput placeholder="Enter city, street">
+                      <mat-icon matSuffix>room</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <div class="form-group">
+                    <mat-form-field (click)="openDp()">
+                      <input formControlName="date" class="pointer" readonly matInput [matDatepicker]="dp" placeholder="Start date">
+                      <mat-icon matSuffix>date_range</mat-icon>
+                      <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <div>
+                    <button [disabled]="form.invalid && form.touched" mat-raised-button color="primary" class="new-blue">Search</button>
+                  </div>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row mob-margin">
+    <div class="col-sm-12 mb-20 mob-pad-0 col-xs-12" *ngIf="data.today">
+      <p class="ral-med-18 mb-20">Today's events</p>
+      <div class="card-wrap no-padding">
+        <div class="card-shadow">
+          <div id="event-carousel" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item" [ngClass]="{active: isFirst}" *ngFor="let item of data.today;first as isFirst">
+                <div class="overlay">
+                </div>
+                <img [src]="item.banner_image" class="img-responsive w-100 br-6">
+                <div class="carousel-caption">
+                  <p class="ral-bold-22 white">{{item.title}}</p>
+                  <a href="" class="btn btn-default btn-join">Book now</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div *ngIf="data.today.length > 1">
+              <a class="left carousel-control br-6" href="#event-carousel" data-slide="prev">
+                <span class="glyphicon icon-carousel-left"></span>
+              </a>
+              <a class="right carousel-control br-6" href="#event-carousel" data-slide="next">
+                <span class="glyphicon icon-carousel-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mob-margin" *ngIf="data.item">
+    <div class="col-xs-12">
+      <p class="ral-med-18 mb-20">All events</p>
+    </div>
+    <div class="col-sm-6 col-xs-12 mb-20 mob-pad-0" *ngFor="let item of data.item">
+      <div class="event-wrap-r" *ngIf="!loading">
+        <div class="card-shadow" *ngIf="!data.search">
+          <img [src]="item.image" alt="" class="img-responsive w-100">
+          <div class="event-overlay">
+            <p class="ral-bold-22">{{item.title}}</p>
+            <p>{{item.start_date | date:'longDate'}}</p>
+            <a [routerLink]="['/events',item.slug]" class="btn btn-default">View Event</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="data.search">
+    <app-loading [height]="10"></app-loading>
+  </div>
+  <div class="row" *ngIf="data.isNext">
+    <div class="col-sm-12 text-center">
+      <button class="btn-load mt-20" *ngIf="!data.loadMore" (click)="loadMore()" mat-raised-button>Load more</button>
+      <app-loading [height]="100" *ngIf="data.loadMore"></app-loading>
+    </div>
+  </div>
+  <div class="row" *ngIf="data.isMore">
+    <div class="col-sm-12 text-center  stuff">
+      <button class="btn-load mt-20" *ngIf="!data.loadMore" (click)="loadMore('search')" mat-raised-button>Load more</button>
+      <app-loading [height]="100" *ngIf="data.loadMore"></app-loading>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-7 empty-block" *ngIf="data.empty && !data.search">
+  <p class="text-center ral-bold-18">No events</p>
+</div>

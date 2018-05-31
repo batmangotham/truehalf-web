@@ -1,0 +1,38 @@
+<div class="container-fluid no-padding">
+  <nav id="home-header" class="navbar header navbar-fixed-top blog-header" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <a class="navbar-brand" [routerLink]="['/blog']">
+          <img src="../../assets/img/truehalf-logo-white.svg" class="img-responsive">
+        </a>
+        <button type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-right">
+        <ul class=" nav navbar-nav navbar-content">
+          <li>
+            <a [routerLink]="['/blog']">Blogs</a>
+          </li>
+          <li>
+            <a [routerLink]="['/blog/events']">Events</a>
+          </li>
+          <li>
+            <a [routerLink]="['/misc/tips']">Dating tips</a>
+          </li>
+          <li>
+            <a [routerLink]="['/misc/safety']">Dating safety</a>
+          </li>
+          <li>
+            <a *ngIf="auth" [routerLink]="['/home']">Return to home</a>
+            <a *ngIf="!auth" href="login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

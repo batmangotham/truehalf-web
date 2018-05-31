@@ -1,0 +1,20 @@
+.search-upgrade {
+  margin: 20px 0;
+  p {
+    &:first-of-type {
+      font-size: 16px;
+    }
+  }
+  a {
+    border-radius: 30px;
+    color: #ef5466;
+    border-color: #ef5466;
+    padding: 7px 15px;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      color: #fff;
+      background-color: #ef5466;
+    }
+  }
+}

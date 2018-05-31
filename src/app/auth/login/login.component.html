@@ -1,0 +1,311 @@
+<app-landing-header></app-landing-header>
+<div class="container-fluid">
+  <div class="row">
+    <div id="landing-carousel" class="carousel slide login-height" data-ride="carousel" data-pause="null">
+      <!-- Indicators -->
+      <!-- <ol class="carousel-indicators">
+                <li data-target="#landing-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#landing-carousel" data-slide-to="1"></li>
+                <li data-target="#landing-carousel" data-slide-to="2"></li>
+            </ol> -->
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active img-trans" style="background-image:url(../../../assets/img/truehalf-cov-1.jpg)">
+          <div class="overlay">
+
+          </div>
+        </div>
+        <div class="item" style="background-image:url(../../../assets/img/truehalf-cov-2.jpg)">
+          <div class="overlay">
+
+          </div>
+        </div>
+        <div class="item" style="background-image:url(../../../assets/img/truehalf-cov-3.jpg)">
+          <div class="overlay">
+
+          </div>
+        </div>
+        <div class="item" style="background-image:url(../../../assets/img/truehalf-cov-4.jpg)">
+          <div class="overlay">
+
+          </div>
+        </div>
+        <div class="item" style="background-image:url(../../../assets/img/truehalf-cov-5.jpg)">
+          <div class="overlay">
+
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 login-wrapper">
+              <div class="row">
+                <div class="col-sm-5  text-center login-l">
+                  <p class="ral-bold-22 white trans-anim">Being with the right person makes it all seem right. The question remains, how do I find the right person?</p>
+                  <button type="button" name="button" class="btn btn-primary fb-btn trans-anim" (click)="signInWithFB()">
+                    <i class="icon-fb"></i>
+                    <span *ngIf="isLogin.fb;else loading">Signing in..</span>
+                    <ng-template #loading>
+                      <span>Sign in via Facebook </span>
+                    </ng-template>
+                  </button>
+                </div>
+                <div class="col-lg-3 col-sm-2 hidden-xs"></div>
+                <div class="col-sm-5 col-lg-4 login-r">
+                  <p class="ral-bold-24 white text-center login-text">Login</p>
+                  <form [formGroup]="form" (ngSubmit)="setValue()">
+                    <div class="form-group">
+                      <label for="Email">Enter your email address</label>
+                      <input formControlName="username" type="email" class="form-control" placeholder="Email">
+                      <div class="valid-wrap" *ngIf="isValid('username')">
+                        <span></span>
+                        <small class="valid-bubble">This field is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Email">Enter your password</label>
+                      <input formControlName="password" type="password" class="form-control" placeholder="Password">
+                      <div class="valid-wrap" *ngIf="isValid('password')">
+                        <span></span>
+                        <small class="valid-bubble">This field is required</small>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="ral-med-12 white">
+                        <!-- <span id="remember">
+                          <i class="icon-untick"></i>Remember me</span> -->
+                      </p>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="ral-med-12 white">
+                        <span>
+                          <a class="ral-med-12 white" (click)="openDialog()">Forgot password?</a>
+                        </span>
+                      </p>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-login" [disabled]="isLogin.normal">
+
+                      <span *ngIf="!isLogin.normal">Sign in</span>
+
+                      <span *ngIf="isLogin.normal">Signing in...</span>
+
+                    </button>
+
+                  </form>
+                  <p class="text-center not-member">Not a Member?
+                    <a href="/register" class="btn btn-default btn-join">Join</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Controls -->
+      <!-- <a class="left carousel-control" href="#landing-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#landing-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a> -->
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 no-padding">
+      <div id="home-carousel-2" class="carousel slide" data-ride="carousel" data-pause="null">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#home-carousel-2" data-slide-to="0" class="active"></li>
+          <li data-target="#home-carousel-2" data-slide-to="1"></li>
+          <li data-target="#home-carousel-2" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active" style="background-image:url(../../../assets/img/truehalf-banner-1.jpg)">
+            <div class="overlay"></div>
+            <!-- <img src="../../../assets/img/truehalf-banner-1.jpg" alt="..."> -->
+            <div class="carousel-caption">
+              <p class="ral-bold-34">Meet Truehalf</p>
+              <p class="ral-med-15 grey">In this age and time, we find ourselves living in busy cities saddled with so much day to day tasks. We get
+                so busy that we sometimes neglect our own social life.</p>
+              <p class="ral-med-15 grey">TrueHalf aims to bridge this gap in the most pleasurable and convenient manner. TrueHalf is designed to help
+                you reach your true companion, just at your fingertips.</p>
+            </div>
+          </div>
+          <div class="item" style="background-image:url(../../../assets/img/truehalf-banner-2.jpg)">
+            <div class="overlay"></div>
+            <!-- <img src="../../../assets/img/truehalf-banner-2.jpg" alt="..."> -->
+            <div class="carousel-caption">
+              <p class="ral-bold-34">Truehalf Events</p>
+              <p class="ral-med-15 grey">Truehalf is always true to its words.</p>
+              <p class="ral-med-15 grey"> Truehalf as a true social networking platform organizes events from time to time where users can meet in person.
+                At these events, users do not only meet potential halves, they also stand a great chance of business networking
+                and making new friends.
+              </p>
+              <a [routerLink]="['/blog/events']" class="btn btn-grad mt-20">Latest events</a>
+            </div>
+          </div>
+          <div class="item" style="background-image:url(../../../assets/img/truehalf-banner-3.jpg)">
+            <div class="overlay"></div>
+            <!-- <img src="../../../assets/img/truehalf-banner-3.jpg" alt="..."> -->
+            <div class="carousel-caption">
+              <div class="col-sm-6 text-left">
+                <p class="ral-bold-24">Our FREE mobile offerings makes it possible for YOU</p>
+                <table class="table">
+                  <tr>
+                    <td>
+                      <p>
+                        <i class="icon-winks"></i>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="ral-med-18 ">Emails &amp; Winks</p>
+                      <p class="ral-med-14 grey">To send and receive emails and winks</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <i class="icon-shuffle"></i>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="ral-med-18 ">Halves</p>
+                      <p class="ral-med-14 grey">To send and receive emails and winks</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <i class="icon-message"></i>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="ral-med-18 ">IM</p>
+                      <p class="ral-med-14 grey">Instant Messaging with Online Users</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <i class="icon-truehalf"></i>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="ral-med-18 ">Find the half</p>
+                      <p class="ral-med-14 grey">And most importantly find your own TRUEHALF</p>
+                    </td>
+                  </tr>
+
+                </table>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-4">
+                    <img src="../../../assets/img/apple.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="col-xs-6 col-sm-4">
+                    <img src="../../../assets/img/play.png" alt="" class="img-responsive">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mobile-mockup hidden-xs">
+                <img src="../../../assets/img/truehalf-mobile.png" alt="" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 testi-wrap" style="background-image:url(../../../assets/img/truehalf-home-1-dark.jpg)">
+      <div id="quote-carousel" class="carousel slide" data-ride="carousel" data-pause="null">
+
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <div class="row">
+              <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 quote-inner">
+                <img src="../../../assets/img/truehalf-5.jpg" alt="..." class="img-responsive br-100">
+              </div>
+              <div class="col-sm-8 col-sm-offset-2 quote-inner">
+                <div class="carousel-caption">
+                  <p class="ral-bold-34 black">"We all want that one companion like no other. I am looking forward to meeting mine here on TrueHalf"</p>
+                  <p class="ral-med-16 grey">Susan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 quote-inner">
+                <img src="../../../assets/img/truehalf-4.jpg" alt="..." class="img-responsive br-100">
+              </div>
+              <div class="col-sm-8 col-sm-offset-2  quote-inner">
+                <div class="carousel-caption">
+                  <p class="ral-bold-34 black">"We both live in one of Africa’s busiest cities, we met here on TrueHalf. We’ve been happy like never before"
+                  </p>
+                  <p class="ral-med-16 grey">- Tade &amp; Moyo </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 quote-inner">
+                <img src="../../../assets/img/truehalf-6.jpg" alt="..." class="img-responsive br-100">
+              </div>
+              <div class="col-sm-8 col-sm-offset-2  quote-inner">
+                <div class="carousel-caption">
+                  <p class="ral-bold-34 black">"TrueHalf, the social networking platform that we have been waiting for"</p>
+                  <p class="ral-med-16 grey">- J. Harry </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control hidden-xs" href="#quote-carousel" role="button" data-slide="prev">
+          <span class="glyphicon icon-carousel-left" aria-hidden="true"></span>
+
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control hidden-xs" href="#quote-carousel" role="button" data-slide="next">
+          <span class="glyphicon icon-carousel-right" aria-hidden="true"></span>
+
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 testi-wrap text-center" style="background-image:url(../../../assets/img/truehalf-bottom-2.jpg)">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 tips-head">
+          <p class="ral-bold-34">Ready to set up your first date?</p>
+          <p class="ral-med-15 grey">This can really be an exciting experience! Your first date is a step further to setting it off with your TRUEHALF.
+            However, some necessary precautions should be taken. </p>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="tips-wrap">
+            <i class="icon-heart"></i>
+            <p class="white">
+              Meet in public. A cozy restaurant, cafe or even an open playground or garden in a beautiful environment</p>
+            <a [routerLink]="['/blog']" class="btn btn-view">View all
+              <span>
+                <i class="icon-right-arrow"></i>
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-landing-footer></app-landing-footer>

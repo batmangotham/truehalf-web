@@ -1,0 +1,34 @@
+<div class="row">
+  <div *ngIf="data.sent;else viewForm" class="mail-sent text-center">
+    <i class="material-icons">check</i>
+    <p class="roboto dark-grey">Your message has been sent successfully!!</p>
+  </div>
+  <ng-template #viewForm>
+    <div class="col-xs-12">
+      <form [formGroup]="form" (ngSubmit)="submitContact()" class="login-contact">
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="Email">
+          <mat-error *ngIf="validateControl('email')">Enter a valid email address</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="name" matInput placeholder="Name">
+          <mat-error *ngIf="validateControl('name')">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="contact_no" matInput placeholder="Phone">
+          <mat-error *ngIf="validateControl('contact_no')">Enter contact number</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea formControlName="message" matInput placeholder="Leave a message"></textarea>
+          <mat-error *ngIf="validateControl('message')">Enter a message with min 10 letters</mat-error>
+        </mat-form-field>
+        <button class="btn btn-default btn-blue">
+          <span *ngIf="data.loading;else normal">Sending</span>
+          <ng-template #normal>
+            <span>Send</span>
+          </ng-template>
+        </button>
+      </form>
+    </div>
+  </ng-template>
+</div>

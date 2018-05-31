@@ -1,0 +1,39 @@
+<div class="container-fluid home-bg">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 mt-120">
+      <div class="card-wrap">
+        <div class="card-shadow">
+          <div class="login-profile">
+            <div class="row m-0">
+              <div class="col-xs-12">
+                <p class="main-head">Welcome {{user.name}}</p>
+              </div>
+              <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <p class="f-18 light-grey roboto mb-40">
+                  Quickly click on the image below to upload a photo.
+                </p>
+                <div class="mt-40 mb-40 login-upload">
+
+                  <img (click)="openModal()" [src]="user.profile_pic" alt="" class="img-responsive center pointer">
+                  <!-- <div class="upload-animation"></div> -->
+                  <div *ngIf="!user.update_status" class="circle">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row m-0">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+
+              </div>
+              <div class="col-sm-4 mt-40">
+                <button (click)="updateStatus()" mat-button color="primary" [routerLink]="['/home']">Skip</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

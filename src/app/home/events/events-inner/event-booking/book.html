@@ -1,0 +1,54 @@
+<div class="col-md-7 no-pad-mob">
+  <div class="card-wrap no-padding mt-20">
+    <div class="card-shadow">
+      <div class="row m-0">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="book-header">
+              <div class="col-sm-8 book-title">
+                <p class="ral-bold-22 mt-20 mb-0">{{type}}</p>
+                <p class="robo-reg-14 light-grey">{{data.start_date | date}}</p>
+              </div>
+              <div class="col-sm-4">
+                <div class="book-details">
+                  <p class="robo-reg-22 price">{{data.amount_per_head * booked_seats.length | currency:'USD':true}}</p>
+                  <p class="robo-reg-14 light-grey">{{booked_seats.length}} seat(s)</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <ul class="list-inline book-list roboto">
+            <li *ngFor="let item of data.seat">
+              <span (click)="selectSeat(item)" [ngClass]="{'booked': item.booked_status,'checked':item.checked}">{{item.seat_no}}</span>
+            </li>
+          </ul>
+          <div class="row">
+            <div class="book-footer">
+              <div class="col-xs-12">
+                <div class="button-row text-right">
+                  <button mat-button [routerLink]="['/events']">Cancel</button>
+                  <button [disabled]="!booked_seats.length || data.check" mat-raised-button color="primary" (click)="bookEvent()">
+
+                    <span *ngIf="data.check;else old">
+                      booking...
+
+                    </span>
+                    <ng-template #old>
+                      <span>
+                        book
+                      </span>
+                    </ng-template>
+
+
+
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

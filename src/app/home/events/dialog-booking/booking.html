@@ -1,0 +1,41 @@
+<div class="row" *ngIf="data.type ==='free'">
+  <div class="col-xs-12">
+    <p class="ral-bold-16">Event booking</p>
+    <p class="robo-reg-14 dark-grey">Max
+      <strong>{{data.max_seat_per_head}}</strong> seats per user.</p>
+    <mat-form-field>
+      <mat-select [(ngModel)]="count" placeholder="Select number of seats">
+        <mat-option *ngFor="let seat of seats" [value]="seat.value">
+          {{ seat.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p *ngIf="count && data.payment_status" class="robo-reg-14">
+      <span class="dark-grey">Amount: &nbsp;</span>
+      <span class="blue">{{data.amount_per_head * count |currency:'USD':true}}</span>
+    </p>
+    <div class="text-right mt-20">
+      <button (click)="dialogRef.close()" mat-button>Close</button>
+      <button type="submit" mat-raised-button color="primary" class="shadow-none">Confirm</button>
+    </div>
+  </div>
+  <!-- <div class="col-xs-12">
+    <div class="mt-20 mb-40 text-center success-wrap">
+      <p class="mt-20"></p>
+      <i class="material-icons f-34">check</i>
+      <p class="ral-bold-18 dark-grey">Booked successfully</p>
+    </div>
+  </div> -->
+</div>
+<div class="row" *ngIf="data.type==='paid'">
+  <div class="col-xs-12">
+    <p class="robo-med-14 dark-grey">ALERT</p>
+    <p class="robo-reg-14 light-grey">Maximum {{data.item}} seats per user</p>
+  </div>
+</div>
+<div class="row" *ngIf="data.type==='message'">
+  <div class="col-xs-12">
+    <p class="robo-med-14 dark-grey">ALERT</p>
+    <p class="robo-reg-14 light-grey">{{data.item}}</p>
+  </div>
+</div>

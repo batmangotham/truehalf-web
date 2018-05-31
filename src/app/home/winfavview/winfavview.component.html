@@ -1,0 +1,27 @@
+<div class="col-md-7 fav-mobile">
+  <p class="ral-med-16 mb-20">
+    <span [ngClass]="{blue: !checked}"> {{content.heading}}</span>
+    <mat-slide-toggle *ngIf="content.view" class="pull-right" [checked]="checked" (change)=ifChecked($event)>
+      <span class="ral-med-16" [ngClass]="{blue: checked}"> {{content.title}}</span>
+    </mat-slide-toggle>
+  </p>
+
+  <div class="row">
+    <app-user-card [users]="users.item" [show]="isShow" *ngIf="!loading"></app-user-card>
+    <app-loading [height]="200" *ngIf="loading"></app-loading>
+    <div class="col-xs-12 empty-block" *ngIf="empty && !loading">
+      <p class="text-center ral-bold-18">List is empty</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="users.isNext">
+    <div class="col-sm-12 text-center">
+      <button class="btn-load mt-20" *ngIf="!users.loadMore" (click)="loadMore()" mat-raised-button>Load more</button>
+      <app-loading [height]="100" *ngIf="users.loadMore"></app-loading>
+    </div>
+  </div>
+  <div class="row" *ngIf="users.upgrade && !loading">
+    <div class="col-xs-12">
+      <app-upgrade [data]="users.upgrade"></app-upgrade>
+    </div>
+  </div>
+</div>

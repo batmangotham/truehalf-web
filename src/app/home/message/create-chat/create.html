@@ -1,0 +1,12 @@
+<div class="msg-right">
+  <div class="start-convo">
+    <div *ngIf="_user.getCurrentUser().subscription;else upgrade">
+      <i class="material-icons">chat_bubble</i>
+      <p>Select a chat to start messaging</p>
+    </div>
+    <ng-template #upgrade>
+      <app-upgrade></app-upgrade>
+    </ng-template>
+  </div>
+
+</div>

@@ -1,0 +1,344 @@
+// main: ../page.less
+
+.msg-left {
+  height: 410px;
+  border-right: 1px solid fade(@text-color-3, 10%);
+
+  .table.msg-tab {
+    margin-bottom: 0;
+
+    tr {
+      td {
+        border-right: 1px solid fade(@text-color-3, 10%);
+        border-bottom: 1px solid fade(@text-color-3, 10%);
+        .roboto;
+        cursor: pointer;
+
+        &:hover {
+          color: @blue;
+        }
+        border-top: none;
+        padding: 16px 8px;
+        text-align: center;
+        vertical-align: middle;
+        color: @text-color-2;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  .msg-name {
+    .table.name-list {
+      .m-0;
+      tr {
+        height: 67px;
+        cursor: pointer;
+        &:focus {
+          outline: 0;
+        }
+        &.active {
+          background-color: fade(@blue, 10%);
+          td {
+            p {
+              &.name {
+                color: @blue;
+              }
+            }
+            &:first-child {
+              border-left: 2px solid @blue;
+            }
+          }
+        }
+        &:hover {
+          background-color: fade(@blue, 10%);
+          // td {
+          //   p {
+          //     &.name {
+          //       color: @blue;
+          //     }
+          //   }
+          //   &:first-child {
+          //     border-left: 2px solid @blue;
+          //   }
+          // }
+        }
+
+        td {
+          span.online-icon {
+            float: right;
+            margin-right: 10px;
+          }
+
+          &:first-child {
+            position: relative;
+            border-left: 2px solid @white;
+            width: 60px;
+          }
+
+          img {
+            .br-6;
+            width: 60px;
+          }
+          .roboto;
+          vertical-align: middle;
+          border-top: none;
+          border-bottom: 1px solid fade(@text-color-3, 10%);
+          padding: 12px 8px;
+
+          &:last-child {
+            p {
+              .icon-online {
+                position: relative;
+                top: 2px;
+                margin-left: 5px;
+              }
+              margin: 0;
+              color: @text-color-2;
+
+              &.last-msg {
+                font-size: 12px;
+                color: @text-color-3;
+                .sl-clamp(18px);
+              }
+            }
+          }
+        }
+      }
+      &.grey-block {
+        tr {
+          &.truehalf {
+            background-color: @white;
+            td {
+              p.name,
+              p.last-msg {
+                background-color: @white;
+                font-size: 18px;
+                font-weight: bold;
+              }
+            }
+          }
+          background-color: fade(@blue, 10%);
+          td {
+            .dummy-img {
+              background-color: fade(@blue, 20%);
+              border-radius: 4px;
+              height: 43px;
+            }
+            &:last-of-type {
+              p {
+                height: 15px;
+                background-color: fade(@blue, 20%);
+                &:first-of-type {
+                  margin-bottom: 5px;
+                  width: 40%;
+                }
+                &:last-of-type {
+                  width: 80%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .msg-name-list {
+    height: 350px;
+    overflow: auto;
+    .scrollbar;
+  }
+}
+
+.msg-right {
+  height: 410px;
+  position: relative;
+  .table.chat-name {
+    margin-bottom: 0;
+    tr {
+      td {
+        border-bottom: 1px solid fade(@text-color-3, 10%);
+        &:first-child {
+          color: @text-color-2;
+          span {
+            display: block;
+            .icon-carousel-left {
+              font-size: 14px;
+              display: inline-block;
+              position: relative;
+
+              &::after {
+                content: "";
+                width: 12px;
+                height: 2px;
+                top: 7px;
+                background-color: @text-color-3;
+                left: 5px;
+                border-radius: 45px;
+                position: absolute;
+              }
+            }
+          }
+        }
+        &:nth-child(2) {
+          color: @text-color-2;
+        }
+        &:last-child {
+          text-align: center;
+
+          span {
+            display: inline-block;
+
+            i {
+              color: fade(@text-color-3, 60%);
+              font-size: 20px;
+              cursor: pointer;
+              float: left;
+              line-height: 16px;
+              height: 15px;
+            }
+          }
+        }
+        .roboto;
+        padding: 16px 18px;
+        border-top: none;
+
+        span {
+          .icon-online {
+            position: relative;
+            top: 2px;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .chat-wrap {
+    height: 297px;
+    position: relative;
+    float: left;
+    width: 100%;
+    overflow: auto;
+    padding: 0 10px;
+    .scrollbar;
+
+    .msg-sent {
+      margin-top: 20px;
+      .roboto;
+
+      span {
+        display: inline-block;
+
+        &:first-child {
+          color: @text-color-2;
+          background-color: @msg-bg;
+          padding: 4px 16px;
+          border-radius: 16px;
+          text-align: left;
+          word-wrap: break-word;
+          font-size: 13.6px;
+          line-height: 19px;
+        }
+
+        &:last-child {
+          color: @text-color-3;
+          margin-left: 10px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .msg-received {
+      text-align: right;
+      .msg-sent;
+
+      span {
+        &:first-child {
+          background-color: @blue;
+          color: @white;
+        }
+      }
+    }
+  }
+
+  .table.chat-input {
+    margin-bottom: 0;
+
+    td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 0;
+      border-top: 1px solid fade(@text-color-3, 10%);
+
+      .form-group {
+        margin-bottom: 0;
+        height: 60px;
+      }
+
+      &:first-child {
+        border-right: 1px solid fade(@text-color-3, 10%);
+
+        .form-control {
+          .roboto;
+          border: none;
+          box-shadow: none;
+          height: 60px;
+          padding: 0 12px;
+        }
+      }
+
+      .btn.btn-default {
+        border: none;
+
+        &:hover {
+          background-color: transparent;
+
+          i {
+            color: @blue;
+          }
+        }
+
+        &:active,
+        &:focus {
+          background-color: transparent;
+          outline: 0;
+          box-shadow: none;
+        }
+
+        i {
+          color: @text-color-3;
+          font-size: 24px;
+          position: relative;
+          top: 4px;
+        }
+      }
+    }
+  }
+
+  .start-convo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 40%;
+    .light-grey;
+    i {
+      font-size: 28px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.chat-heading {
+  padding: 15px 20px;
+  border-bottom: 1px solid fade(@text-color-3, 10%);
+  .robo-reg-16;
+  margin-bottom: 0;
+  .dark-grey;
+}
